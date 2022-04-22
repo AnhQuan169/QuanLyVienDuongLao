@@ -1,0 +1,6 @@
+@include('client.Layout.header')
+@include('client.Layout.slider')
+@include('client.Layout.left')
+@yield('content')
+@include('client.Layout.right')
+@include('client.Layout.footer')

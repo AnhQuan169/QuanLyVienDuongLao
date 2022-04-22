@@ -5,18 +5,19 @@
 }
 
 $color:#333;
-$color_2: rgb(91, 152, 184);
+$color_b:rgb(91, 152, 184);
 body {
     background-color: #fff;
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
 }
 
-a {
-    text-decoration: none;
+img {
+    max-width: 100%;
 }
 
-img {
+a {
+    text-decoration: none;
     max-width: 100%;
 }
 
@@ -29,11 +30,154 @@ li {
 
 header {
     .top-header {
-        background-color: #ededed;
+        background-color: #fff;
         font-size: 14px;
         color: $color;
-        padding: 10px 0;
+        padding: 3px 0;
     }
-    .main-header {}
-    .menu-header {}
+    .main-header {
+        .logo {
+            img {
+                max-width: 300px;
+            }
+        }
+    }
+    .menu-header {
+        background-color: $color_b;
+        .main-menu {
+            ul {
+                li {
+                    display: inline-block;
+                    transition: all .3s;
+                    position: relative;
+                    a {
+                        display: inline-block;
+                        padding: 10px 30px;
+                        text-transform: uppercase;
+                        color: #fff;
+                    }
+                    ul {
+                        position: absolute;
+                        width: 222.5px;
+                        background-color: $color;
+                        color: #fff;
+                        left: 0;
+                        top: 80px;
+                        text-align: left;
+                        opacity: 0;
+                        visibility: hidden;
+                        z-index: 1;
+                        transition: all .3s;
+                        li {
+                            display: block;
+                            a {
+                                display: block;
+                                background-color: $color;
+                                text-transform: inherit;
+                                padding: 10px 15px;
+                                border-top: 1px solid #ededed;
+                            }
+                            &:last-child {
+                                border-bottom: none;
+                            }
+                            &:hover {
+                                transition: all .3s;
+                                a {
+                                    background-color: #fff;
+                                    color: #333;
+                                }
+                            }
+                        }
+                    }
+                    &:hover {
+                        transition: all .3s;
+                        a {
+                            background-color: $color;
+                        }
+                        ul {
+                            opacity: 1;
+                            visibility: visible;
+                            top: 40px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#content {
+    .slide-show {}
+    .main-content {
+        margin: 30px 0;
+        .main-right {}
+        .main-center {
+            .card {
+                border: 3px solid rgba(0, 0, 0, .125);
+                margin: 20px 0;
+                .form-group {
+                    padding: 10px 20px 0;
+                }
+            }
+        }
+        .form-register {
+            border: 2px solid rgb(141, 138, 138);
+            border-radius: 20px;
+            padding: 30px;
+            button {
+                width: 100%;
+            }
+        }
+        .main-left {}
+        // Xem thông tin trung tâm
+        h2 {
+            font-weight: 600;
+            padding-bottom: 20px;
+        }
+        .main-content-center {
+            h4 {
+                font-weight: 600;
+                padding-bottom: 5px;
+                padding-top: 20px;
+            }
+            h6 {
+                font-weight: 600;
+                padding-left: 30px;
+                padding-bottom: 5px;
+            }
+            p {}
+        }
+    }
+}
+
+footer {
+    background-color: $color;
+    color: #fff;
+    .footer-top {
+        .box-footer {
+            margin: 20px 0;
+            h3 {
+                color: #fff;
+                padding-bottom: 10px;
+                padding-top: 10px;
+            }
+            ul {
+                li {
+                    a {
+                        color: #fff;
+                        i {
+                            font-size: 10px;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .footer-bottom {
+        border-top: 1px solid #d4d3d3a9;
+        .pull-left {
+            margin-top: 16px;
+        }
+    }
 }
