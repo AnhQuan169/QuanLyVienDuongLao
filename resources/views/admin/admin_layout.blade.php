@@ -47,11 +47,11 @@
         <div class="left-side-inner">
             <!--Sidebar nav-->
             <ul class="nav nav-pills nav-stacked custom-nav">
-                <li class="menu-list nav-active"><a href="index.html"><i class="icon-home"></i> <span>Dashboard</span></a>
-                    <ul class="sub-menu-list">
+                <li class=" nav-active"><a href="{{URL::to('/dashboard')}}"><i class="icon-home"></i> <span>Dashboard</span></a>
+                    {{-- <ul class="sub-menu-list">
                         <li  class="active"><a href="{{URL::to('/dashboard')}}"> Dashboard 1</a></li>
                         <li><a href="dashboard2.html"> Dashboard 2</a></li>
-                    </ul>
+                    </ul> --}}
                 </li>
 
                 <li class="menu-list"><a href="#"><i class="icon-layers"></i> <span>UI Elements</span></a>
@@ -270,7 +270,7 @@
                             <span class="badge">4</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-head pull-right">
-                         <h5 class="title">Notifications</h5>
+                         <h5 class="title">Thông báo</h5>
                         <ul class="dropdown-list normal-list">
 						 <li class="message-list message-scroll-list">
                           <a href="#">
@@ -319,19 +319,21 @@
 					</ul>
                         </div>
                     </li>
-                    <li>
-                        <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{asset('public/admin/images/users/avatar-6.jpg')}}" alt="" />
-                            John Doe
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                          <li> <a href="#"> <i class="fa fa-wrench"></i> Settings </a> </li>
-                          <li> <a href="#"> <i class="fa fa-user"></i> Profile </a> </li>
-                          <li> <a href="#"> <i class="fa fa-info"></i> Help </a> </li>
-                          <li> <a href="#"> <i class="fa fa-lock"></i> Logout </a> </li>
-                        </ul>
-                    </li>
+                    @if(Auth::check())
+                        <li>
+                            <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <img src="{{asset('public/admin/images/users/avatar-6.jpg')}}" alt="" />
+                                {{Auth::user()->name}}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                            <li> <a href="#"> <i class="fa fa-wrench"></i> Cài đặt </a> </li>
+                            <li> <a href="#"> <i class="fa fa-user"></i> Thông tin cá nhân </a> </li>
+                            <li> <a href="#"> <i class="fa fa-info"></i> Thay đổi mật khẩu </a> </li>
+                            <li> <a href="{{route('logout-admin')}}"> <i class="fa fa-lock"></i> Đăng xuất </a> </li>
+                            </ul>
+                        </li>
+                    @endif
 
                 </ul>
             </div>
@@ -344,11 +346,11 @@
         <!--body wrapper start-->
         <div class="wrapper">
             @yield('admin_content')
-			  </div>
+		</div>
         <!-- End Wrapper-->
 
         <!--Start  Footer -->
-        <footer class="footer-main"> 2017 &copy; Meter admin Template.	</footer>	
+        <footer class="footer-main"> Created by Nguyễn Anh Quân © 2022	</footer>	
          <!--End footer -->
 
        </div>

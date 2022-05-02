@@ -20,8 +20,8 @@ Route::get('/', [HomeController::class, 'index']);
 
 
 
-// ===================Admin==============================
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/dashboard', [AdminController::class, 'show_dashboard']);
+// ========================Admin==============================
+Route::get('/admin', [AdminController::class, 'index'])->name('login-admin');
+Route::get('/dashboard', [AdminController::class, 'show_dashboard'])->name('dashboard');
 Route::post('/login-admin', [AdminController::class, 'login_admin']);
-Route::get('/logout', [AdminController::class, 'logout']);
+Route::get('/logout-admin', [AdminController::class, 'logout_admin'])->name('logout-admin');

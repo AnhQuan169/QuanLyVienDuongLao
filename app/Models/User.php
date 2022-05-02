@@ -21,6 +21,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'hoTen',
+        'gioiTinh',
+        'ngaySinh',
+        'anhDaiDien',
+        'CCCD',
+        'soDienThoai',
+        'loaiTaiKhoan',
+        'diaChi',
+        'nguoiDuyet',
+        'id_lichtruc'
     ];
 
     /**
@@ -32,6 +42,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function getAuthPassword(){
+        return $this->password;
+    }
 
     /**
      * The attributes that should be cast.
