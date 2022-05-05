@@ -13,14 +13,14 @@ session_start();
 class AdminController extends Controller
 {
     // Bảo mật Login
-    public function AuthLogin(){
-        $admin_id = Auth::id();
-        if($admin_id){
-            return redirect()->route('dashboard');
-        }else{
-            return redirect()->route('login-admin')->send();
-        }
-    }
+    // public function AuthLogin(){
+    //     $admin_id = Auth::id();
+    //     if($admin_id){
+    //         return redirect()->route('dashboard');
+    //     }else{
+    //         return redirect()->route('login-admin')->send();
+    //     }
+    // }
 
     // ============== Login ==================
     public function index(){
@@ -28,8 +28,9 @@ class AdminController extends Controller
     }
 
     public function show_dashboard(){
-        $this->AuthLogin();
-        return view('admin.dashboard');
+        // $this->AuthLogin();
+        $title = "Dashboard";
+        return view('admin.dashboard', compact('title'));
     }
 
     public function login_admin(Request $request){
@@ -41,16 +42,16 @@ class AdminController extends Controller
         if(Auth::attempt(['name'=> $request->name, 'password' => $request->password])){
             $user = User::where('name',$request->name)->first();
             Auth::login($user);
-            return redirect('/dashboard');
+            return redirect()->route('dashboard');
         }else{
-            return redirect('/admin')->with('message','Tên tài khoản hoặc mật khẩu không đúng');
+            return redirect()->route('login_admin')->with('message','Tên tài khoản hoặc mật khẩu không đúng');
         }
     }
 
     public function logout_admin(){
         // $this->AuthLogin();
         Auth::logout();
-        return redirect()->route('login-admin')->with('message','Đăng xuất thành công');
+        return redirect()->route('login_admin')->with('message','Đăng xuất thành công');
     }
 
     // ============== Dashboard ==================

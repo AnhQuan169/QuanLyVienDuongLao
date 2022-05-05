@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+
+class NguoiThan
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function handle(Request $request, Closure $next)
+    {
+        if(Auth::check()) {
+            if(Auth::user()->loaiTaiKhoan==3){
+                return $next($request);
+            }
+            return redirect()->route('login_admin')->with('message','Bạn không có quyền thực hiện chức năng này');
+        }
+        return redirect()->route('login_admin');
+    }
+}

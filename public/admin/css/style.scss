@@ -1,0 +1,12 @@
+
+.text-line-long{
+    width: 200px;
+    p{
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        text-overflow: ellipsis;
+        
+    }
+}

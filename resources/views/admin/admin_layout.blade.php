@@ -2,23 +2,34 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="{{asset('public/admin/images/favicon.png')}}" type="image/png">
-  <title>Admin</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link rel="icon" href="{{asset('public/admin/images/favicon.png')}}" type="image/png">
+    <title>{{$title}}</title>
+    
     <!--Begin  Page Level  CSS -->
-    <link href="{{asset('public/admin/plugins/morris-chart/morris.css')}}" rel="stylesheet">
+    {{-- <link href="{{asset('public/admin/plugins/morris-chart/morris.css')}}" rel="stylesheet"> --}}
     <link href="{{asset('public/admin/plugins/jquery-ui/jquery-ui.min.css')}}" rel="stylesheet"/>
      <!--End  Page Level  CSS -->
     <link href="{{asset('public/admin/css/css/icons.css')}}" rel="stylesheet">
     <link href="{{asset('public/admin/css/css/bootstrap.min.css')}}" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> --}}
     <link href="{{asset('public/admin/css/css/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('public/admin/css/style.css')}}">
     <link href="{{asset('public/admin/css/css/responsive.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.css">
+    <link href="{{asset('public/admin/css/css/icons/font-awesome/font-awesome.css')}}" rel="stylesheet"> 
     
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="{{asset('public/admin/css/css/fontawesome/all.min.css')}}">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -47,110 +58,17 @@
         <div class="left-side-inner">
             <!--Sidebar nav-->
             <ul class="nav nav-pills nav-stacked custom-nav">
-                <li class=" nav-active"><a href="{{URL::to('/dashboard')}}"><i class="icon-home"></i> <span>Dashboard</span></a>
+                <li class=" nav-active"><a href="{{route('dashboard')}}"><i class="icon-home"></i> <span>Dashboard</span></a>
                     {{-- <ul class="sub-menu-list">
                         <li  class="active"><a href="{{URL::to('/dashboard')}}"> Dashboard 1</a></li>
                         <li><a href="dashboard2.html"> Dashboard 2</a></li>
                     </ul> --}}
                 </li>
 
-                <li class="menu-list"><a href="#"><i class="icon-layers"></i> <span>UI Elements</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="ui-buttons.html"> Buttons</a></li>
-                        <li><a href="ui-panels.html"> Panels</a></li>
-                        <li><a href="ui-sweet-alert.html">Sweet alert</a></li>
-                        <li><a href="ui-progressbar.html">Progressbar</a></li>
-                        <li><a href="ui-alert-notification.html">Alert &amp; notification</a></li>
-                        <li><a href="ui-checkbox-radio.html">Checkbox-radios</a></li>
-                        <li><a href="ui-range-slider.html">Range slider</a></li>
-                        <li><a href="ui-modals-tooltip.html">Modals Tooltip</a></li>
-                        <li><a href="typography.html">Typography</a></li>
-                    </ul>
+                <li>
+                    <a href="{{route('all_notification')}}"><i class="icon-layers"></i><span>Quản lý thông báo</span></a>
                 </li>
                 
-                <li class="menu-list"><a href="#"><i class="icon-grid"></i> <span>Tables</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="table-static.html"> Basic Table</a></li>
-                        <li><a href="table-responsive.html">Responsive Table</a></li>
-                        <li><a href="table-datatable.html">Data Tables</a></li>
-                    </ul>
-                </li>
-
-                <li class="menu-list"><a href="#"><i class="icon-envelope-open"></i> <span>Mail</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="inbox.html"> Inbox</a></li>
-                        <li><a href="compose.html"> Compose Mail</a></li>
-                        <li><a href="message-view.html"> View Mail</a></li>
-                    </ul>
-                </li>
-
-                <li class="menu-list"><a href="#"><i class="icon-loop"></i> <span>Forms</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="form-basic.html"> Form Layouts</a></li>
-                        <li><a href="form-element.html"> Form Components</a></li>
-                        <li><a href="form-wizard.html"> Form Wizards</a></li>
-                        <li><a href="form-pickers.html"> Form Pickers</a></li>
-                        <li><a href="form-validation.html"> Form Validation</a></li>
-                        <li><a href="image-crop.html">Image Crop</a></li>
-                        <li><a href="form-xeditable.html">X-editable</a></li>
-                        <li><a href="form-editors.html">Editors</a></li>
-                        <li><a href="form-upload.html">File Dropzone</a></li>
-                    </ul>
-                </li>
-                
-                
-                <li class="menu-list"><a href="#"><i class="icon-film"></i> <span>Icons</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="icon-font-awesome.html"> Fontawesome</a></li>
-                        <li><a href="icon-simple-lineicon.html">Simple Line Icon</a></li>
-                        <li><a href="icon-themify.html">Themify Icons</a></li>
-                        <li><a href="icon-material-design.html">Material Design Icons</a></li>
-                         <li><a href="icon-ion.html">Ions Icon </a></li>
-                    </ul>
-                </li>
-                
-                
-                <li><a href="calendar.html"><i class="icon-note"></i> <span>Calendar</span></a></li>
-                 <li><a href="widget.html"><i class="icon-wrench"></i> <span>Widget</span></a></li>
-                
-                <li class="menu-list"><a href="#"><i class="icon-pie-chart"></i> <span>Charts</span></a>
-                    <ul class="sub-menu-list">
-                    <li><a href="flot-chart.html"> Flot Charts</a></li>
-                    <li><a href="morris-chart.html"> Morris Charts</a></li>
-                    <li><a href="chart-js.html"> Chartjs</a></li>
-                    <li><a href="chart-sparkline.html"> Chart Sparkline</a></li>
-                    </ul>
-                </li>
-                <li class="menu-list"><a href="#"><i class="icon-location-pin"></i> <span>Maps</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="google-map.html"> Google Map</a></li>
-                        <li><a href="vector-map.html"> Vector Map</a></li>
-                    </ul>
-                </li>
-                <li class="menu-list"><a href="#"><i class="icon-folder"></i> <span>Extra Pages</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="faq.html"> FAQ</a></li>
-                        <li><a href="profile.html"> Profile</a></li>
-                        <li><a href="invoice.html"> Invoice</a></li>
-                        <li><a href="timeline.html"> Timeline</a></li>
-                        <li><a href="email-template.html"> Email Template</a></li>
-                        <li><a href="pricing-table.html"> Pricing Table</a></li>
-                        <li><a href="search-result.html"> Search Result</a></li>
-                        <li><a href="error-400.html"> 400 Error</a></li>
-                        <li><a href="error-403.html"> 403 Error</a></li>
-                        <li><a href="error-404.html"> 404 Error</a></li>
-                        <li><a href="error-500.html"> 500 Error</a></li>
-                        <li><a href="error-503.html"> 503 Error</a></li>
-                    </ul>
-                </li>
-                <li class="menu-list"><a href="#"><i class="icon-lock"></i> <span>Login</span></a>
-                    <ul class="sub-menu-list">
-                       <li><a href="login.html"> Login </a></li>
-                       <li><a href="forgot-password.html"> Forgot Password </a></li>
-                        <li><a href="registration.html"> Registration </a></li>
-                        <li><a href="locked.html"> Lockscreen </a></li>
-                    </ul>
-                </li>
 
             </ul>
             <!--End sidebar nav-->
@@ -175,162 +93,18 @@
             <!--notification menu start -->
             <div class="menu-right">
                 <ul class="notification-menu">
-                    <li>
-                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
-                            <i class="fa fa-tasks"></i>
-                            <span class="badge">8</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-head pull-right">
-                            <h5 class="title">You have 8 pending task</h5>
-                            <ul class="dropdown-list">
-                            <li class="notification-scroll-list notification-list ">
-                               <!-- list item-->
-                               <a href="javascript:void(0);" class="list-group-item">
-                                  <div class="media">
-                                     <div class="pull-left p-r-10">
-                                        <em class="fa  fa-shopping-cart noti-primary"></em>
-                                     </div>
-                                     <div class="media-body">
-                                        <h5 class="media-heading">A new order has been placed.</h5>
-                                        <p class="m-0">
-                                            <small>29 min ago</small>
-                                        </p>
-                                     </div>
-                                  </div>
-                               </a>
-                    
-                               <!-- list item-->
-                               <a href="javascript:void(0);" class="list-group-item">
-                                  <div class="media">
-                                     <div class="pull-left p-r-10">
-                                        <em class="fa fa-check noti-success"></em>
-                                     </div>
-                                     <div class="media-body">
-                                        <h5 class="media-heading">Databse backup is complete</h5>
-                                        <p class="m-0">
-                                            <small>12 min ago</small>
-                                        </p>
-                                     </div>
-                                  </div>
-                               </a>
-                    
-                               <!-- list item-->
-                               <a href="javascript:void(0);" class="list-group-item">
-                                  <div class="media">
-                                     <div class="pull-left p-r-10">
-                                        <em class="fa fa-user-plus noti-info"></em>
-                                     </div>
-                                     <div class="media-body">
-                                        <h5 class="media-heading">New user registered</h5>
-                                        <p class="m-0">
-                                             <small>17 min ago</small>
-                                        </p>
-                                     </div>
-                                  </div>
-                               </a>
-                    
-                                <!-- list item-->
-                               <a href="javascript:void(0);" class="list-group-item">
-                                  <div class="media">
-                                     <div class="pull-left p-r-10">
-                                        <em class="fa fa-diamond noti-danger"></em>
-                                     </div>
-                                     <div class="media-body">
-                                        <h5 class="media-heading">Database error.</h5>
-                                        <p class="m-0">
-                                             <small>11 min ago</small>
-                                        </p>
-                                     </div>
-                                  </div>
-                               </a>
-                    
-                               <!-- list item-->
-                               <a href="javascript:void(0);" class="list-group-item">
-                                  <div class="media">
-                                     <div class="pull-left p-r-10">
-                                        <em class="fa fa-cog noti-warning"></em>
-                                     </div>
-                                     <div class="media-body">
-                                        <h5 class="media-heading">New settings</h5>
-                                        <p class="m-0">
-                                             <small>18 min ago</small>
-                                        </p>
-                                     </div>
-                                  </div>
-                               </a>
-                             </li>
-                             <li class="last"> <a href="#">View all notifications</a> </li>
-							</ul>
-                        </div>
-                    </li>
-                    
-                    <li>
-                        <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
-                            <span class="badge">4</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-head pull-right">
-                         <h5 class="title">Thông báo</h5>
-                        <ul class="dropdown-list normal-list">
-						 <li class="message-list message-scroll-list">
-                          <a href="#">
-                              <span class="photo"> <img src="{{asset('public/admin/images/users/avatar-8.jpg')}}" class="img-circle" alt="img"></span>
-                              <span class="subject">John Doe</span>
-                              <span class="message"> New tasks needs to be done</span>
-                               <span class="time">15 minutes ago</span>
-                          </a>
-                          
-                          <a href="#">
-                              <span class="photo"> <img src="{{asset('public/admin/images/users/avatar-7.jpg')}}" class="img-circle" alt="img"></span>
-                              <span class="subject">John Doe</span>
-                              <span class="message"> New tasks needs to be done</span>
-                               <span class="time">10 minutes ago</span>
-                          </a>
-                        
-                          <a href="#">
-                              <span class="photo"> <img src="{{asset('public/admin/images/users/avatar-6.jpg')}}" class="img-circle" alt="img"></span>
-                               <span class="subject">John Doe</span>
-                               <span class="message"> New tasks needs to be done</span>
-                              <span class="time">20 minutes ago</span>
-                          </a>
-                         
-                          <a href="#">
-                              <span class="photo"> <img src="{{asset('public/admin/images/users/avatar-6.jpg')}}" class="img-circle" alt="img"></span>
-                               <span class="subject">John Doe</span>
-                               <span class="message"> New tasks needs to be done</span>
-                              <span class="time">20 minutes ago</span>
-                          </a>
-                        
-                          <a href="#">
-                              <span class="photo"> <img src="{{asset('public/admin/images/users/avatar-6.jpg')}}" class="img-circle" alt="img"></span>
-                               <span class="subject">John Doe</span>
-                               <span class="message"> New tasks needs to be done</span>
-                              <span class="time">20 minutes ago</span>
-                          </a>
-                          
-                          <a href="#">
-                              <span class="photo"> <img src="{{asset('public/admin/images/users/avatar-6.jpg')}}" class="img-circle" alt="img"></span>
-                               <span class="subject">John Doe</span>
-                               <span class="message"> New tasks needs to be done</span>
-                              <span class="time">20 minutes ago</span>
-                          </a>
-						</li>
-						<li class="last"> <a  href="#">All Messages</a> </li>
-					</ul>
-                        </div>
-                    </li>
+                   
                     @if(Auth::check())
                         <li>
                             <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 <img src="{{asset('public/admin/images/users/avatar-6.jpg')}}" alt="" />
-                                {{Auth::user()->name}}
+                                {{Auth::user()->hoTen}}
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                            <li> <a href="#"> <i class="fa fa-wrench"></i> Cài đặt </a> </li>
                             <li> <a href="#"> <i class="fa fa-user"></i> Thông tin cá nhân </a> </li>
                             <li> <a href="#"> <i class="fa fa-info"></i> Thay đổi mật khẩu </a> </li>
-                            <li> <a href="{{route('logout-admin')}}"> <i class="fa fa-lock"></i> Đăng xuất </a> </li>
+                            <li> <a href="{{route('logout_admin')}}"> <i class="fa fa-lock"></i> Đăng xuất </a> </li>
                             </ul>
                         </li>
                     @endif
@@ -353,28 +127,65 @@
         <footer class="footer-main"> Created by Nguyễn Anh Quân © 2022	</footer>	
          <!--End footer -->
 
-       </div>
-      <!--End main content -->
+        </div>
+        <!--End main content -->
     
 
+      
 
     <!--Begin core plugin -->
-    <script src="{{asset('public/admin/js/jquery.min.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    {{-- <script src="{{asset('public/admin/js/jquery2.0.3.min.js')}}"></script> --}}
+    {{-- <script src="{{asset('public/admin/js/jquery.min.js')}}"></script> --}}
     <script src="{{asset('public/admin/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('public/admin/plugins/moment/moment.js')}}"></script>
-    <script  src="{{asset('public/admin/js/jquery.slimscroll.js')}} "></script>
+    <script src="{{asset('public/admin/js/jquery.slimscroll.js')}} "></script>
     <script src="{{asset('public/admin/js/jquery.nicescroll.js')}}"></script>
     <script src="{{asset('public/admin/js/functions.js')}}"></script>
     <!-- End core plugin -->
     
     <!--Begin Page Level Plugin-->
-	<script src="{{asset('public/admin/plugins/morris-chart/morris.js')}}"></script>
-    <script src="{{asset('public/admin/plugins/morris-chart/raphael-min.js')}}"></script>
-    <script src="{{asset('public/admin/plugins/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
+	{{-- <script src="{{asset('public/admin/plugins/morris-chart/morris.js')}}"></script>
+    <script src="{{asset('public/admin/plugins/morris-chart/raphael-min.js')}}"></script> --}}
+    <script src="{{asset('public/admin/plugins/jquery-sparkline/jquery.charts-sparkline.js')}}"></script>
     <script src="{{asset('public/admin/pages/dashboard.js')}}"></script>
-    <!--End Page Level Plugin-->
-    <script src="{{asset('public/admin/js/main.js')}}"></script>
-   
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="{{asset('public/admin/js/sweetalert.js')}}"></script>
+
+
+    <script src="{{asset('public/admin/js/notification.js')}}"></script>
+    
+    {{-- Hiển thị thông báo --}}
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
+    {{-- <script type="text/javascript">
+        $(document).ready(function(){
+           
+            $(document).on('click','.pagination a', function(event){
+                event.preventDefaukt();
+                var page = $(this).attr('href').split('page=')[1];
+                fetch_data(page);
+            });
+
+            function fetch_data(page){
+                $.ajax({
+                    url:"/all-notification/fetch_data?page="+page,
+                    success:function(data){
+                        $('#table_data').html(data);
+                    }
+                });
+            }
+
+            
+        });
+    </script> --}}
+    <script src="{{asset('public/admin/ckeditor/ckeditor.js')}}"></script>
+    
+    @include('More.ckeditor')
+    @yield('ajax_js')
+
+
+    
 
 </body>
 
