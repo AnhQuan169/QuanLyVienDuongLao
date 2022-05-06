@@ -59,15 +59,79 @@
             <!--Sidebar nav-->
             <ul class="nav nav-pills nav-stacked custom-nav">
                 <li class=" nav-active"><a href="{{route('dashboard')}}"><i class="icon-home"></i> <span>Dashboard</span></a>
-                    {{-- <ul class="sub-menu-list">
-                        <li  class="active"><a href="{{URL::to('/dashboard')}}"> Dashboard 1</a></li>
-                        <li><a href="dashboard2.html"> Dashboard 2</a></li>
-                    </ul> --}}
+                    
                 </li>
 
+                @hasrole('0')
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký tham quan trung tâm</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký dịch vụ cho người cao tuổi</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký hồ sơ cho người cao tuổi</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký người dùng</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Duyệt đề xuất báo cáo kho</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Quản lý người dùng</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Quản lý hồ sơ người cao tuổi</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Quản lý dịch vụ trung tâm</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Quản lý nhà cung cấp</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Quản lý nhân viên</span></a>
+                </li>
                 <li>
                     <a href="{{route('all_notification')}}"><i class="icon-layers"></i><span>Quản lý thông báo</span></a>
                 </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Cập nhật lịch trực của nhân viên</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Thống kê</span></a>
+                </li>
+                @endhasrole
+                {{-- Nhân viên kho --}}
+                @hasrole('1')
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Quản lý xuất - nhập thuốc</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Xuất báo cáo nhập - xuất thuốc</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Quản lý cơ sở vật chất</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Đề xuất báo cáo kho</span></a>
+                </li>
+                @endhasrole
+                @hasrole('2')
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Cập nhật thuốc điều trị</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Cập nhật bệnh án người cao tuổi</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Cập nhật tình trạng vật tư y tế đang dùng</span></a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-layers"></i><span>Cập nhật tình hình sức khoẻ người cao tuổi</span></a>
+                </li>
+                @endhasrole
                 
 
             </ul>

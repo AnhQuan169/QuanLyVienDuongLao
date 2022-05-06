@@ -29,6 +29,7 @@ class User extends Authenticatable
         'soDienThoai',
         'loaiTaiKhoan',
         'diaChi',
+        'tinhTrang',
         'nguoiDuyet',
         'id_lichtruc'
     ];
@@ -55,4 +56,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // public function hasRole($role){
+    //     return null !== $this->where('loaiTaiKhoan',$role)->first();
+    // }
 }

@@ -41,8 +41,12 @@ class AdminController extends Controller
 
         if(Auth::attempt(['name'=> $request->name, 'password' => $request->password])){
             $user = User::where('name',$request->name)->first();
-            Auth::login($user);
-            return redirect()->route('dashboard');
+            if($user->tinhTrang == 1){
+                Auth::login($user);
+                return redirect()->route('dashboard');
+            }else{
+                return redirect()->route('login_admin')->with('message','Tài khoản đang bị khoá');
+            }
         }else{
             return redirect()->route('login_admin')->with('message','Tên tài khoản hoặc mật khẩu không đúng');
         }
