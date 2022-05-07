@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DangKyThamQuanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ThongBaoController;
@@ -43,5 +44,23 @@ Route::middleware('admin')->prefix('admin')->group(function () {
         Route::post('/update-notification/{id}', [ThongBaoController::class, 'update_notification'])->name('notification.update');
         // Xoá thông báo
         Route::delete('/delete-notification/{id}', [ThongBaoController::class, 'delete_notification'])->name('notification.delete');
+    });
+    // ----------------- Quản lý Đăng ký tham quan trung tâm----------------
+    Route::prefix('dangkythamquan')->group(function(){
+        // === Quản lý danh sách đơn đăng ký
+        Route::get('/all-registerToVisit', [DangKyThamQuanController::class, 'all_registerToVisit'])->name('registerToVisit.all');
+        Route::get('/add-registerToVisit', [DangKyThamQuanController::class, 'add_registerToVisit'])->name('registerToVisit.add');
+        // Lưu đăng ký tham quan mới
+        Route::post('/save-registerToVisit', [DangKyThamQuanController::class, 'save_registerToVisit'])->name('registerToVisit.save');
+        // Xem chi tiết đơn đăng ký tham quan trung tâm
+        Route::get('/detail-registerToVisit/{id}', [DangKyThamQuanController::class, 'detail_registerToVisit'])->name('registerToVisit.detail');
+        // Route::post('/update-registerToVisit/{id}', [DangKyThamQuanController::class, 'update_registerToVisit'])->name('registerToVisit.update');
+        // Xoá đăng ký tham quan trung tâm
+        Route::delete('/delete-registerToVisit/{id}', [DangKyThamQuanController::class, 'delete_registerToVisit'])->name('registerToVisit.delete');
+        
+        // === Duyệt đơn đăng ký đang chờ duyệt
+        Route::get('/browse-application', [DangKyThamQuanController::class, 'browse_application'])->name('browseapplication.all');
+        Route::get('/detail-browse-application/{id}', [DangKyThamQuanController::class, 'detail_browse_application'])->name('browseapplication.detail');
+        Route::get('/save-browse-application/{id}', [DangKyThamQuanController::class, 'save_browse_application'])->name('browseapplication.save');
     });
 });

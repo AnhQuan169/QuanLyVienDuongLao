@@ -63,8 +63,12 @@
                 </li>
 
                 @hasrole('0')
-                <li>
-                    <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký tham quan trung tâm</span></a>
+                <li class="menu-list">
+                    <a href=""><i class="icon-layers"></i><span>Quản lý đơn đăng ký tham quan trung tâm</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{route('browseapplication.all')}}">Duyệt đơn đăng ký</a></li>
+                        <li><a href="{{route('registerToVisit.all')}}">Danh sách đơn đăng ký được duyệt</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký dịch vụ cho người cao tuổi</span></a>
@@ -78,8 +82,12 @@
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Duyệt đề xuất báo cáo kho</span></a>
                 </li>
-                <li>
+                <li class="menu-list">
                     <a href=""><i class="icon-layers"></i><span>Quản lý người dùng</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{route('user.browserapl')}}">Duyệt đăng ký người dùng</a></li>
+                        <li><a href="{{route('user.all')}}">Danh sách người dùng</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Quản lý hồ sơ người cao tuổi</span></a>
@@ -207,6 +215,9 @@
     <script src="{{asset('public/admin/js/jquery.nicescroll.js')}}"></script>
     <script src="{{asset('public/admin/js/functions.js')}}"></script>
     <!-- End core plugin -->
+    
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
     
     <!--Begin Page Level Plugin-->
 	{{-- <script src="{{asset('public/admin/plugins/morris-chart/morris.js')}}"></script>

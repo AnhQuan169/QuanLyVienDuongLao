@@ -24,14 +24,6 @@
     <div class="col-md-12">
         <div class="white-box">
             <h2 class="header-title">Thêm thông báo mới</h2>
-                <?php 
-                    $message = Session::get('message');
-                    if($message){
-                        echo '<span class="text-alert">',$message,'</span>';
-                        Session::put('message', null);
-                    }
-                ?>
-                
                 <form class="js-validation-bootstrap form-horizontal" action="{{route('save_notification')}}" method="POST">
                     @csrf
                     <div class="form-group">

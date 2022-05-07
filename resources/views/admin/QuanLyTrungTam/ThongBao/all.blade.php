@@ -53,7 +53,7 @@
                                     <td>{{$tbao->id_thongbao}}</td>
                                     <td>{{$tbao->chuDe}}</td>
                                     <td class="text-line-long">{!!$tbao->noiDung!!}</td>
-                                    <td>{{$tbao->thoiGianDang}}</td>
+                                    <td>{{date('d-m-Y', strtotime($tbao->thoiGianDang))}}</td>
                                     <td>{{$tbao->hoTen}}</td>
                                     <td class="text-center" style="width: 100px">
                                         <a href="{{route('notification.edit',$tbao->id_thongbao)}}" type="button" class="btn btn-success edit-tb" style="border-radius: 7px"><i class="fa fa fa-pencil-square"></i></a>

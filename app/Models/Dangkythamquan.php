@@ -10,7 +10,7 @@ class Dangkythamquan extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        'nguoiDaiDien','soLuong','email','soDienThoai','ghiChu','ngayThamQuan','ngayDangKy','tinhTrang','ngayDuyet','id_quanlytrungtam'
+        'nguoiDaiDien','soLuong','email','soDienThoaiDK','ghiChu','ngayThamQuan','ngayDangKy','tinhTrang','ngayDuyet','id_quanlytrungtam'
     ];
     protected $primaryKey = 'id_dangky';
     protected $table = 'tbl_dangkythamquan';
