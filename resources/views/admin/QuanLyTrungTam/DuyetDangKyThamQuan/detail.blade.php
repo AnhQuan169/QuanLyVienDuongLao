@@ -76,14 +76,14 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label " for="val-username">Ngày đăng ký: </label>
                         <div class="col-md-9">
-                            <input name="chuDe" class="form-control maintb" type="text" value="{{date('d-m-Y', strtotime($dangkythamquan->ngayDangKy))}}" disabled>
+                            <input name="chuDe" class="form-control maintb" type="text" value="{{date('d-m-Y', $dangkythamquan->ngayDangKy)}}" disabled>
                         </div>
                         </span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label " for="val-username">Ngày duyệt: </label>
                         <div class="col-md-9">
-                            <input name="chuDe" class="form-control maintb" type="text" value="{{date('d-m-Y', strtotime($dangkythamquan->ngayDuyet))}}" disabled>
+                            <input name="chuDe" class="form-control maintb" type="text" value="{{date('d-m-Y', $dangkythamquan->ngayDuyet)}}" disabled>
                         </div>
                         </span>
                     </div>

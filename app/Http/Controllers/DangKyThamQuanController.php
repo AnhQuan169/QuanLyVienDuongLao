@@ -34,9 +34,9 @@ class DangKyThamQuanController extends Controller
         $data['ghiChu'] = $request->ghiChu;
         $data['ngayThamQuan'] = $request->ngayThamQuan;
         $data['ngayDangKy'] = now();
-        $data['tinhTrang'] = '0';
-        $data['ngayDuyet'] = null;
-        $data['id_quanlytrungtam'] = null;
+        $data['tinhTrang'] = '1';
+        $data['ngayDuyet'] = now();
+        $data['id_quanlytrungtam'] = Auth::user()->id;
         Dangkythamquan::insert($data);
         Toastr::success('Đăng ký tham quan trung tâm thành công', 'Thành công',);
         return redirect()->route('registerToVisit.add');

@@ -5,6 +5,7 @@ use App\Http\Controllers\DangKyThamQuanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ThongBaoController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,5 +63,26 @@ Route::middleware('admin')->prefix('admin')->group(function () {
         Route::get('/browse-application', [DangKyThamQuanController::class, 'browse_application'])->name('browseapplication.all');
         Route::get('/detail-browse-application/{id}', [DangKyThamQuanController::class, 'detail_browse_application'])->name('browseapplication.detail');
         Route::get('/save-browse-application/{id}', [DangKyThamQuanController::class, 'save_browse_application'])->name('browseapplication.save');
+    });
+    
+    // ---------------------Quản lý người dùng--------------------------
+    Route::prefix('nguoidung')->group(function(){
+        // === Quản lý danh sách người dùng
+        Route::get('/all-user', [UserController::class, 'all_user'])->name('user.all');
+        Route::get('/add-user', [UserController::class, 'add_user'])->name('user.add');
+        Route::post('/select-address-user', [UserController::class, 'select_address_user']);
+        // Lưu đăng ký tham quan mới
+        Route::post('/save-user', [UserController::class, 'save_user'])->name('user.save');
+        // Xem chi tiết đơn đăng ký tham quan trung tâm
+        Route::get('/edit-user/{id}', [UserController::class, 'edit_user'])->name('user.edit');
+        Route::post('/update-user/{id}', [UserController::class, 'update_user'])->name('user.update');
+        // Xoá đăng ký tham quan trung tâm
+        Route::delete('/delete-user/{id}', [UserController::class, 'delete_user'])->name('user.delete');
+        
+        // === Duyệt đơn đăng ký đang chờ duyệt
+        Route::get('/browse-user', [UserController::class, 'browse_user'])->name('browseuser.all');
+        Route::get('/detail-browse-user/{id}', [UserController::class, 'detail_browse_user'])->name('browseuser.detail');
+        // Duyệt
+        Route::get('/save-browse-user/{id}', [UserController::class, 'save_browse_user'])->name('browseuser.save');
     });
 });

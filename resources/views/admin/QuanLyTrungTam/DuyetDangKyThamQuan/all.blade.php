@@ -11,7 +11,7 @@
             <a>Quản lý đơn đăng ký tham quan trung tâm</a>
         </li>
         <li class="active">
-            <a href="{{route('registerToVisit.all')}}">Danh sách đơn đăng ký tham quan được duyệt</a>
+            <a href="{{route('registerToVisit.all')}}">{{$title}}</a>
         </li>
     </ol>
     <div class="clearfix"></div>
@@ -22,11 +22,9 @@
 <div class="row">
     <div class="col-md-12">
         <div class="white-box">
-            <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 my-2">
-                    <h2 class="header-title">Danh sách đơn đăng ký tham quan được duyệt</h2>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 my-2 ">
+
+            <div class="row justify-content-end" style="margin-bottom: 10px">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-2">
                     <div class="log text-right">
                         <a type="button" class="btn btn-primary" style="border-radius: 7px" href="{{route('registerToVisit.add')}}"><i class="fa fa-plus"></i> Thêm</a>
                     </div>

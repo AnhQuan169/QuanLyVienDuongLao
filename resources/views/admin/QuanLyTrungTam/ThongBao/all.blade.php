@@ -22,11 +22,9 @@
 <div class="row">
     <div class="col-md-12">
         <div class="white-box">
-            <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 my-2">
-                    <h2 class="header-title">Danh sách thông báo</h2>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 my-2 ">
+            
+            <div class="row justify-content-end" style="margin-bottom: 10px">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-2">
                     <div class="log text-right">
                         <a type="button" class="btn btn-primary" style="border-radius: 7px" href="{{route('add_notification')}}" data-target="#thongbao-add" data-toggle="thongbao"><i class="fa fa-plus"></i> Thêm</a>
                     </div>
@@ -80,44 +78,7 @@
 @section('ajax_js')
     <script type="text/javascript">
         $(document).ready(function(){
-            // $('.delete-tb').click(function(){
-
-            //     swal({
-            //         title: "Bạn có chắc muốn xoá thông báo này?",
-            //         type: "warning",
-            //         showCancelButton: true,
-            //         confirmButtonClass: "btn-danger",
-            //         confirmButtonText: "Có",
-            //         cancelButtonText: "Không",
-            //         closeOnConfirm: false,
-            //         closeOnCancel: false
-            //         },
-            //         function(isConfirm){
-            //             if (isConfirm) {
-            //                 // e.preventDefault();
-            //                 var id = $(this).data('id');
-            //                 var token = $("meta[name='csrf-token']").attr("content");
-
-            //                 // var url = e.target;
-            //                 $.ajax({
-            //                     url: 'delete-notification/'+id,
-            //                     // url:url.href,
-            //                     method: 'DELETE',
-            //                     data:{id:id,_token:token},
-            //                     success:function(){
-            //                         swal("Xoá thành công!", "Không thể khôi phục dữ liệu đã xoá", "success");
-            //                         window.setTimeout(function(){
-            //                             location.href = "{{url('/admin/thongbao/all-notification')}}";
-            //                         }, 5000);
-            //                     }
-            //                 });
-            //                 // swal("Xoá thành công!", "", "success");
-            //             }else {
-            //                 swal("Đóng", "", "error");
-            //             }
-            //         }
-            //     });
-            // });
+            
 
             $(document).on('click', '.delete-tb', function (e) {
                 e.preventDefault();

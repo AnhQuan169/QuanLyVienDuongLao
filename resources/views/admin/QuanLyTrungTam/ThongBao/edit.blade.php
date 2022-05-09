@@ -64,6 +64,7 @@
                     </div>
                     <div class="form-group">
                       <div class="col-md-8 col-md-offset-3">
+                        <a href="{{route('all_notification')}}" class="btn  btn-primary" type="button">Quay lại</a>
                         <button class="btn  btn-primary" type="submit">Cập nhật</button>
                       </div>
                     </div>

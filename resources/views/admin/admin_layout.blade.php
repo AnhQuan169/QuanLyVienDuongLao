@@ -70,27 +70,25 @@
                         <li><a href="{{route('registerToVisit.all')}}">Danh sách đơn đăng ký được duyệt</a></li>
                     </ul>
                 </li>
+                <li class="menu-list">
+                    <a href=""><i class="icon-layers"></i><span>Quản lý người dùng</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{route('browseuser.all')}}">Duyệt đăng ký người dùng</a></li>
+                        <li><a href="{{route('user.all')}}">Danh sách người dùng</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list">
+                    <a href=""><i class="icon-layers"></i><span>Quản lý hồ sơ người cao tuổi</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{route('browseuser.all')}}">Duyệt đăng ký hồ sơ</a></li>
+                        <li><a href="{{route('user.all')}}">Danh sách hồ sơ</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký dịch vụ cho người cao tuổi</span></a>
                 </li>
                 <li>
-                    <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký hồ sơ cho người cao tuổi</span></a>
-                </li>
-                <li>
-                    <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký người dùng</span></a>
-                </li>
-                <li>
                     <a href=""><i class="icon-layers"></i><span>Duyệt đề xuất báo cáo kho</span></a>
-                </li>
-                <li class="menu-list">
-                    <a href=""><i class="icon-layers"></i><span>Quản lý người dùng</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="{{route('user.browserapl')}}">Duyệt đăng ký người dùng</a></li>
-                        <li><a href="{{route('user.all')}}">Danh sách người dùng</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href=""><i class="icon-layers"></i><span>Quản lý hồ sơ người cao tuổi</span></a>
                 </li>
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Quản lý dịch vụ trung tâm</span></a>
