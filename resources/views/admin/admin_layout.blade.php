@@ -80,8 +80,8 @@
                 <li class="menu-list">
                     <a href=""><i class="icon-layers"></i><span>Quản lý hồ sơ người cao tuổi</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="{{route('browseuser.all')}}">Duyệt đăng ký hồ sơ</a></li>
-                        <li><a href="{{route('user.all')}}">Danh sách hồ sơ</a></li>
+                        <li><a href="{{route('browseelderly.all')}}">Duyệt đăng ký hồ sơ</a></li>
+                        <li><a href="{{route('elderly.all')}}">Danh sách hồ sơ</a></li>
                     </ul>
                 </li>
                 <li>

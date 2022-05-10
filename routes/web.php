@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DangKyThamQuanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HoSoNguoiCaoTuoiController;
 use App\Http\Controllers\ThongBaoController;
 use App\Http\Controllers\UserController;
 
@@ -84,5 +85,25 @@ Route::middleware('admin')->prefix('admin')->group(function () {
         Route::get('/detail-browse-user/{id}', [UserController::class, 'detail_browse_user'])->name('browseuser.detail');
         // Duyệt
         Route::get('/save-browse-user/{id}', [UserController::class, 'save_browse_user'])->name('browseuser.save');
+    });
+
+    // ---------------------Quản lý người cao tuổi--------------------------
+    Route::prefix('nguoicaotuoi')->group(function(){
+        // === Quản lý danh sách người dùng
+        Route::get('/all-elderly', [HoSoNguoiCaoTuoiController::class, 'all_elderly'])->name('elderly.all');
+        Route::get('/add-elderly', [HoSoNguoiCaoTuoiController::class, 'add_elderly'])->name('elderly.add');
+        // Lưu đăng ký tham quan mới
+        Route::post('/save-elderly', [HoSoNguoiCaoTuoiController::class, 'save_elderly'])->name('elderly.save');
+        // Xem chi tiết đơn đăng ký tham quan trung tâm
+        Route::get('/edit-elderly/{id}', [HoSoNguoiCaoTuoiController::class, 'edit_elderly'])->name('elderly.edit');
+        Route::post('/update-elderly/{id}', [HoSoNguoiCaoTuoiController::class, 'update_elderly'])->name('elderly.update');
+        // Xoá đăng ký tham quan trung tâm
+        Route::delete('/delete-elderly/{id}', [HoSoNguoiCaoTuoiController::class, 'delete_elderly'])->name('elderly.delete');
+        
+        // === Duyệt đơn đăng ký đang chờ duyệt
+        Route::get('/browse-elderly', [HoSoNguoiCaoTuoiController::class, 'browse_elderly'])->name('browseelderly.all');
+        Route::get('/detail-browse-elderly/{id}', [HoSoNguoiCaoTuoiController::class, 'detail_browse_elderly'])->name('browseelderly.detail');
+        // Duyệt
+        Route::get('/save-browse-elderly/{id}', [HoSoNguoiCaoTuoiController::class, 'save_browse_elderly'])->name('browseelderly.save');
     });
 });

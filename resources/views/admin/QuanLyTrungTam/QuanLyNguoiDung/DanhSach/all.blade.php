@@ -78,11 +78,11 @@
 <!--End row-->
 @endsection
 
-{{-- @section('ajax_js')
+@section('ajax_js')
     <script type="text/javascript">
         $(document).ready(function(){
 
-            $(document).on('click', '.delete-dktq', function (e) {
+            $(document).on('click', '.delete-user', function (e) {
                 e.preventDefault();
                 var id = $(this).data('id');
                 var token = $("meta[name='csrf-token']").attr("content");
@@ -97,7 +97,7 @@
                     function() {
                         $.ajax({
                             type: "DELETE",
-                            url: 'delete-registerToVisit/'+id,
+                            url: 'delete-user/'+id,
                             data: {id:id, _token:token},
                             success: function (data) {
                                 swal("Xoá thành công!", "Không thể khôi phục dữ liệu đã xoá", "success");
@@ -111,4 +111,4 @@
             
         });
     </script>
-@endsection --}}
+@endsection
