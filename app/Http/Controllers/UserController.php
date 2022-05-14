@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Xaphuong;
 use Illuminate\Support\Facades\Auth;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Gate;
 
 
 class UserController extends Controller
@@ -17,20 +18,26 @@ class UserController extends Controller
     //--------------Quản lý người dùng--------------
     // Hiển thị danh sách người dùng đã được duyệt
     public function all_user(Request $request){
-        $title='Danh sách người dùng được duyệt';
-        $url = $request->url();
-        $user = User::where('tinhTrang',1)
-        ->where('loaiTaiKhoan',3)
-        ->orderBy('id','desc')
-        ->paginate(5);
-        return view('admin.QuanLyTrungTam.QuanLyNguoiDung.DanhSach.all', compact('title','url','user'));
+        if(Gate::allows('quanly')) {
+            $title='Danh sách người dùng được duyệt';
+            $url = $request->url();
+            $user = User::where('tinhTrang','>',0)
+            ->where('loaiTaiKhoan',3)
+            ->orderBy('id','desc')
+            ->paginate(5);
+            return view('admin.QuanLyTrungTam.QuanLyNguoiDung.DanhSach.all', compact('title','url','user'));
+        }
+        return redirect()->back();
     }
     // Thêm người dùng mới
     public function add_user(Request $request){
-        $title = "Thêm người dùng mới";
-        $url = $request->url();
-        $city = Tinh::orderBy('city_id','desc')->get();
-        return view('admin.QuanLyTrungTam.QuanLyNguoiDung.DanhSach.add', compact('title','url','city'));
+        if(Gate::allows('quanly')) {
+            $title = "Thêm người dùng mới";
+            $url = $request->url();
+            $city = Tinh::orderBy('city_id','desc')->get();
+            return view('admin.QuanLyTrungTam.QuanLyNguoiDung.DanhSach.add', compact('title','url','city'));
+        }
+        return redirect()->back();
     }
 
     // Chọn địa chỉ người dùng
@@ -109,7 +116,7 @@ class UserController extends Controller
                             $data['anhDaiDien'] = '';
                             User::insert($data);
                             Toastr::success('Đăng ký tài khoản thành công', 'Thành công',);
-                            return redirect()->route('user.add');
+                            return redirect()->back();
                         }else{
                             Toastr::warning('Mật khẩu nhập lại không chính xác', 'Thất bại',);
                             return redirect()->back();
@@ -122,10 +129,13 @@ class UserController extends Controller
 
     // Chi tiết thông tin người dùng
     public function edit_user(Request $request,$id){
-        $user = User::find($id);
-        $title = 'Chi tiết thông tin người dùng ';
-        $url = $request->url();
-        return view('admin.QuanLyTrungTam.QuanLyNguoiDung.DanhSach.edit', compact('user','title','url'));
+        if(Gate::allows('quanly')) {
+            $user = User::find($id);
+            $title = 'Chi tiết thông tin người dùng ';
+            $url = $request->url();
+            return view('admin.QuanLyTrungTam.QuanLyNguoiDung.DanhSach.edit', compact('user','title','url'));
+        }
+        return redirect()->back();
     }
 
     // Lưu thông tin người dùng được chỉnh sửa
@@ -169,50 +179,84 @@ class UserController extends Controller
                         }
                         User::where('id',$id)->update($data);
                         Toastr::success('Cập nhật thông tin người dùng thành công', 'Thành công',);
-                        return redirect()->route('user.all');
+                        return redirect()->back();
                     }
                 }
             }
         }
     }
 
+    // Khoá tài khoản
+    public function unactive_user($id){
+        if(Gate::allows('quanly')) {
+            User::where('id',$id)
+            ->update([
+                'tinhTrang' => 2
+            ]);
+            Toastr::success('Khoá tài khoản', 'Thành công',);
+            return redirect()->back();
+        }
+        return redirect()->back();
+    }
+    // Khởi động tài khoản
+    public function active_user($id){
+        if(Gate::allows('quanly')) {
+            User::where('id',$id)
+            ->update([
+                'tinhTrang' => 1
+            ]);
+            Toastr::success('Khởi động tài khoản', 'Thành công',);
+            return redirect()->back();
+        }
+        return redirect()->back();
+    }
+
 
     //------------ Duyệt danh sách người dùng --------------
     // === Danh sách người dùng đang chờ duyệt
     public function browse_user(Request $request){
-        $title='Duyệt đăng ký người dùng';
-        $url = $request->url();
-        $user = User::where('tinhTrang',0)
-        ->where('loaiTaiKhoan',3)
-        // ->join('tbl_xaphuongthitran','tbl_xaphuongthitran.xa_id','=','users.diaChi')
-        ->orderBy('id','asc')
-        ->paginate(5);
-        return view('admin.QuanLyTrungTam.QuanLyNguoiDung.Duyet.all', compact('title','url','user'));
+        if(Gate::allows('quanly')) {
+            $title='Duyệt đăng ký người dùng';
+            $url = $request->url();
+            $user = User::where('tinhTrang',0)
+            ->where('loaiTaiKhoan',3)
+            // ->join('tbl_xaphuongthitran','tbl_xaphuongthitran.xa_id','=','users.diaChi')
+            ->orderBy('id','asc')
+            ->paginate(5);
+            return view('admin.QuanLyTrungTam.QuanLyNguoiDung.Duyet.all', compact('title','url','user'));
+        }
+        return redirect()->back();
     }
 
     // === Chi tiết người dùng đang chờ duyệt
     // Chi tiết đơn đăng ký đang chờ duyệt
     public function detail_browse_user(Request $request,$id){
-        $title = 'Chi tiết đơn đăng ký đang chờ duyệt';
-        $url = $request->url();
-        $user = User::where('id',$id)
-        // ->join('tbl_xaphuongthitran','tbl_xaphuongthitran.xa_id','=','users.diaChi')
-        // ->join('tbl_quanhuyen','tbl_quanhuyen.qh_id','=','tbl_xaphuongthitran.qh_id')
-        // ->join('tbl_tinhthanhpho','tbl_tinhthanhpho.city_id','=','tbl_quanhuyen.city_id')
-        ->first();
-        return view('admin.QuanLyTrungTam.QuanLyNguoiDung.Duyet.detail', compact('user','title','url'));
+        if(Gate::allows('quanly')) {
+            $title = 'Chi tiết đơn đăng ký đang chờ duyệt';
+            $url = $request->url();
+            $user = User::where('id',$id)
+            // ->join('tbl_xaphuongthitran','tbl_xaphuongthitran.xa_id','=','users.diaChi')
+            // ->join('tbl_quanhuyen','tbl_quanhuyen.qh_id','=','tbl_xaphuongthitran.qh_id')
+            // ->join('tbl_tinhthanhpho','tbl_tinhthanhpho.city_id','=','tbl_quanhuyen.city_id')
+            ->first();
+            return view('admin.QuanLyTrungTam.QuanLyNguoiDung.Duyet.detail', compact('user','title','url'));
+        }
+        return redirect()->back();
     }
 
     // Duyệt
     public function save_browse_user($id){
-        User::where('id',$id)
-        ->update([
-            'tinhTrang' => 1,
-            'ngayDuyet' => now(),
-            'nguoiDuyet' => Auth::user()->hoTen
-        ]);
-        Toastr::success('Duyệt đơn đăng ký thành công', 'Thành công',);
-        return redirect()->route('browseuser.all');
+        if(Gate::allows('quanly')) {
+            User::where('id',$id)
+            ->update([
+                'tinhTrang' => 1,
+                'ngayDuyet' => now(),
+                'nguoiDuyet' => Auth::user()->hoTen
+            ]);
+            Toastr::success('Duyệt đơn đăng ký thành công', 'Thành công',);
+            return redirect()->route('browseuser.all');
+        }
+        return redirect()->back();
     }
 
     // Xoá đơn đăng ký

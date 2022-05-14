@@ -29,61 +29,59 @@
                         <div class="col-md-9">
                             <input name="madk" class="form-control madk" type="text" value="{{$dangkythamquan->id_dangky}}" disabled>
                         </div>
-                        </span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label " for="val-username">Tên người đại diện: </label>
                         <div class="col-md-9">
-                            <input name="nguoidd" class="form-control nguoidd" type="text" value="{{$dangkythamquan->nguoiDaiDien}}" disabled>
+                            <input name="nguoidd" class="form-control nguoidd" type="text" value="{{$dangkythamquan->nguoiDaiDienDK}}" disabled>
                         </div>
-                        </span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label " for="val-username">Số lượng người tham quan: </label>
                         <div class="col-md-9">
-                            <input name="soluongntq" class="form-control soluongntq" type="text" value="{{$dangkythamquan->soLuong}}" disabled>
+                            <input name="soluongntq" class="form-control soluongntq" type="text" value="{{$dangkythamquan->soLuongDK}}" disabled>
                         </div>
-                        </span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label " for="val-username">Email: </label>
                         <div class="col-md-9">
-                            <input name="emailndd" class="form-control emailndd" type="text" value="{{$dangkythamquan->email}}" disabled>
+                            <input name="emailndd" class="form-control emailndd" type="text" value="{{$dangkythamquan->emailDK}}" disabled>
                         </div>
-                        </span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label " for="val-username">Số điện thoại: </label>
                         <div class="col-md-9">
                             <input name="sdtndd" class="form-control sdtndd" type="text" value="{{$dangkythamquan->soDienThoaiDK}}" disabled>
                         </div>
-                        </span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label " for="val-username">Ghi chú: </label>
                         <div class="col-md-9">
-                            <input name="ghichutq" class="form-control ghichutq" type="text" value="{{$dangkythamquan->ghiChu}}" disabled>
+                            <textarea style="resize: none" rows="3" name="ghiChuDK" class="form-control" placeholder="Nhập ghi chú" disabled>{{$dangkythamquan->ghiChuDK}}</textarea>
                         </div>
-                        </span>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label " for="val-username">Ngày tham quan: </label>
                         <div class="col-md-9">
-                            <input name="ngaytq" class="form-control ngaytq" type="text" value="{{date('d-m-Y', strtotime($dangkythamquan->ngayThamQuan))}}" disabled>
+                            <input name="ngaytq" class="form-control ngaytq" type="text" value="{{date('d-m-Y', strtotime($dangkythamquan->ngayThamQuanDK))}}" disabled>
                         </div>
-                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label " for="val-username">Thời gian tham quan: </label>
+                        <div class="col-md-9">
+                            <input name="ngaytq" class="form-control ngaytq" type="text" value="{{date('H:i A', strtotime($dangkythamquan->thoigianTQ))}}" disabled>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label " for="val-username">Ngày đăng ký: </label>
                         <div class="col-md-9">
-                            <input name="ngaydk" class="form-control ngaydk" type="text" value="{{date('d-m-Y', strtotime($dangkythamquan->ngayDangKy))}}" disabled>
+                            <input name="ngaydk" class="form-control ngaydk" type="text" value="{{date('d-m-Y', strtotime($dangkythamquan->ngayDangKyDK))}}" disabled>
                         </div>
-                        </span>
                     </div>
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-3">
-                            <a href="{{route('browseapplication.all')}}" class="btn  btn-primary" type="button">Quay lại</a>
-                            <a href="{{route('browseapplication.save',$dangkythamquan->id_dangky)}}" data-iddangky="{{$dangkythamquan->id_dangky}}" class="btn  btn-primary update-browse" type="button">Duyệt</a>
+                            <a href="{{route('browseapplication.all')}}" class="btn btn-instagram" type="button">Quay lại</a>
+                            <a href="{{route('browseapplication.save',$dangkythamquan->id_dangky)}}" data-iddangky="{{$dangkythamquan->id_dangky}}" class="btn  btn-success update-browse" type="button">Duyệt</a>
                         </div>
                     </div>
                 </form>

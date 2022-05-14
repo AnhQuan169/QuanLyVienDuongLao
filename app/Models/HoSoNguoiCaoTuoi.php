@@ -24,10 +24,11 @@ class HoSoNguoiCaoTuoi extends Model
         'anhDaiDienNCC',
         'CCCD_NCC',
         'soDienThoaiNCC',
+        'diaChiNCC',
         'ngayDangKyNCC',
         'tinhTrangNCC',
         'ngayDuyetNCC',
-        'id_quanlytrungtam'
+        'id_quanly'
     ];
     protected $primaryKey = 'id_nguoicaotuoi';
     protected $table = 'tbl_hosonguoicaotuoi';

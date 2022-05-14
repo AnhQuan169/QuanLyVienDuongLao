@@ -1,3 +1,3 @@
-.text-line-long{width:200px}.text-line-long p{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;text-overflow:ellipsis}
+.text-line-long{width:200px}.text-line-long p{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;text-overflow:ellipsis}.cover-image-ncc{width:100%;height:auto;z-index:4;display:none;-webkit-animation:zoom 0.6s;animation:zoom 0.6s}.cover-image-ncc img{width:97%;height:auto;-o-object-fit:cover;object-fit:cover}.close-ncc{cursor:pointer;font-size:34px;float:right}.close-ncc:hover{color:red}.zoom-picture:hover{-webkit-transform:scale(2);transform:scale(2)}.small-nd{width:200px;position:relative}@-webkit-keyframes zoom{0%{-webkit-transform:scale(0);transform:scale(0)}100%{-webkit-transform:scale(1);transform:scale(1)}}@keyframes zoom{0%{-webkit-transform:scale(0);transform:scale(0)}100%{-webkit-transform:scale(1);transform:scale(1)}}
 
 /*# sourceMappingURL=style.css.map */

@@ -82,8 +82,11 @@
                         <label class="col-md-3 control-label " for="val-username">Ảnh đại diện: <span class="text-danger">*</span></label>
                         <div class="col-md-9">
                             <input name="anhDaiDien" class="form-control" value="{{$user->anhDaiDien}}" type="file">
-                            <img src="{{asset('public/admin/uploads/users/'.$user->anhDaiDien)}}" width="150px" />
-                            
+                            <div id="large12" style="display: none;" class="cover-image-ncc">
+                                <img src="{{asset('public/admin/uploads/users/'.$user->anhDaiDien)}}" alt="">
+                                <div id="close12" class="close-ncc">&times</div>
+                            </div>
+                            <img id="small12" class="small-nd" src="{{asset('public/admin/uploads/users/'.$user->anhDaiDien)}}" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -147,8 +150,8 @@
 
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-3">
-                            <a href="{{route('user.all')}}" class="btn  btn-primary" type="button">Quay lại</a>
-                            <button class="btn  btn-primary save_user" type="submit">Cập nhật</button>
+                            <a href="{{route('user.all')}}" class="btn  btn-instagram" type="button">Quay lại</a>
+                            <button class="btn  btn-success save_user" type="submit">Cập nhật</button>
                         </div>
                     </div>
                 </form>
@@ -163,24 +166,36 @@
         $(document).ready(function(){
 
             $('.choose').on('change',function(){
-			var action = $(this).attr('id');
-			var dd_id = $(this).val();
-			var _token = $('input[name="_token"]').val();
-			var result = '';
-			if(action=='city'){
-				result = 'province';
-			}else{
-				result = 'wards';
-			}
-			$.ajax({
-				url: 'select-address-user',
-				method: 'POST',
-				data:{action:action,dd_id:dd_id,_token:_token},
-				success:function(data){
-					$('#'+result).html(data);
-				}
-			});
-		});
+                var action = $(this).attr('id');
+                var dd_id = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                var result = '';
+                if(action=='city'){
+                    result = 'province';
+                }else{
+                    result = 'wards';
+                }
+                $.ajax({
+                    url: 'select-address-user',
+                    method: 'POST',
+                    data:{action:action,dd_id:dd_id,_token:_token},
+                    success:function(data){
+                        $('#'+result).html(data);
+                    }
+                });
+            });
+
+            // Ảnh đại diện
+            $('#close12').click(function(){
+                $("#large12").hide();
+                $("#small12").show();
+            });
+
+            $('#small12').click(function(){
+                $("#large12").show();
+                $("#small12").hide();
+            });
+            
             
         });
     </script>

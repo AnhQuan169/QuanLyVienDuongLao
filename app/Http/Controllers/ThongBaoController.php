@@ -9,17 +9,21 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Gate;
 session_start();
 
 class ThongBaoController extends Controller
 {
     //
     public function all_notification(){
-        $title = 'Danh sách thông báo';
-        $thongbao = ThongBao::orderBy('id_thongbao','desc')
-        ->join('users','users.id','=','tbl_thongbao.id_quanlytrungtam')
-        ->paginate(5);
-        return view('admin.QuanLyTrungTam.ThongBao.all', compact('thongbao','title'));
+        if(Gate::allows('quanly')) {
+            $title = 'Danh sách thông báo';
+            $thongbao = ThongBao::orderBy('id_thongbao','desc')
+            ->join('users','users.id','=','tbl_thongbao.id_quanlytrungtam')
+            ->paginate(5);
+            return view('admin.QuanLyTrungTam.ThongBao.all', compact('thongbao','title'));
+        }
+        return redirect()->back();
     }
 
     // public function fetch_data(Request $request){
@@ -30,8 +34,11 @@ class ThongBaoController extends Controller
     // }
 
     public function add_notification(){
-        $title = "Thêm thông báo mới";
-        return view('admin.QuanLyTrungTam.ThongBao.add', compact('title'));
+        if(Gate::allows('quanly')) {
+            $title = "Thêm thông báo mới";
+            return view('admin.QuanLyTrungTam.ThongBao.add', compact('title'));
+        }
+        return redirect()->back();
     }
 
     public function save_notification(ThongBaoRequest $request){
@@ -47,14 +54,17 @@ class ThongBaoController extends Controller
 
     public function delete_notification($id){
         ThongBao::find($id)->delete();
-        // return redirect()->route('all_notification');
+            // return redirect()->route('all_notification');
     }
 
     // Chỉnh sửa thông báo
     public function edit_notification($id_thongbao){
-        $title = "Chỉnh sửa thông báo";
-        $thongbao = ThongBao::find($id_thongbao);
-        return view('admin.QuanLyTrungTam.ThongBao.edit', compact('title','thongbao'));
+        if(Gate::allows('quanly')) {
+            $title = "Chỉnh sửa thông báo";
+            $thongbao = ThongBao::find($id_thongbao);
+            return view('admin.QuanLyTrungTam.ThongBao.edit', compact('title','thongbao'));
+        }
+        return redirect()->back();
     }
 
     public function update_notification(ThongBaoRequest $request, $id){

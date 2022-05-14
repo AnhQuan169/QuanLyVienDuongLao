@@ -21,6 +21,7 @@
     <link href="{{asset('public/admin/css/css/bootstrap.min.css')}}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> --}}
     <link href="{{asset('public/admin/css/css/style.css')}}" rel="stylesheet">
+    {{-- SCSS --}}
     <link rel="stylesheet" href="{{asset('public/admin/css/style.css')}}">
     <link href="{{asset('public/admin/css/css/responsive.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.css">
@@ -67,7 +68,9 @@
                     <a href=""><i class="icon-layers"></i><span>Quản lý đơn đăng ký tham quan trung tâm</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="{{route('browseapplication.all')}}">Duyệt đơn đăng ký</a></li>
-                        <li><a href="{{route('registerToVisit.all')}}">Danh sách đơn đăng ký được duyệt</a></li>
+                        <li><a href="{{route('registerToVisit.all')}}">Danh sách đơn đăng ký đã duyệt</a></li>
+                        <li><a href="{{route('allapplicationtoday.all')}}">Khách tham quan hôm nay</a></li>
+                        <li><a href="{{route('garbagecanapplication.all')}}">Thùng rác</a></li>
                     </ul>
                 </li>
                 <li class="menu-list">
@@ -82,6 +85,7 @@
                     <ul class="sub-menu-list">
                         <li><a href="{{route('browseelderly.all')}}">Duyệt đăng ký hồ sơ</a></li>
                         <li><a href="{{route('elderly.all')}}">Danh sách hồ sơ</a></li>
+                        <li><a href="{{route('elderly.warehouse')}}">Kho hồ sơ</a></li>
                     </ul>
                 </li>
                 <li>

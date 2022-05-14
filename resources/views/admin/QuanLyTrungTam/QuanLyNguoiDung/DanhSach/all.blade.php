@@ -43,25 +43,37 @@
                                 <th>Ngày sinh</th>
                                 <th>Số điện thoại</th>
                                 <th>Người duyệt</th>
-                                <th></th>
+                                <th>Tình trạng</th>
+                                <th>Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($user as $key => $usernd )
-                                <tr>
-                                    <td>{{$usernd->id}}</td>
-                                    <td><img src="{{asset('public/admin/uploads/users/'.$usernd->anhDaiDien)}}" width="150px" /></td>
-                                    <td>{{$usernd->hoTen}}</td>
-                                    <td>{{$usernd->email}}</td>
-                                    <td>{{date('d-m-Y', strtotime($usernd->ngaySinh))}}</td>
-                                    <td>{{$usernd->soDienThoai}}</td>
-                                    <td>{{$usernd->nguoiDuyet}}</td>
-                                    <td class="text-center">
-                                        <a href="{{route('user.edit',$usernd->id)}}" type="button" class="btn btn-success edit-user" style="border-radius: 7px"><i class="fa fa fa-check-circle"></i> Chi tiết</a>
-                                        <a href=""  type="button" data-id="{{$usernd->id}}" class="btn btn-danger delete-user" style="border-radius: 7px"><i class="fa fa-times"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            @if (count($user) > 0)
+                                @foreach ($user as $key => $usernd )
+                                    <tr>
+                                        <td>{{$usernd->id}}</td>
+                                        <td><img src="{{asset('public/admin/uploads/users/'.$usernd->anhDaiDien)}}" width="150px" /></td>
+                                        <td>{{$usernd->hoTen}}</td>
+                                        <td>{{$usernd->email}}</td>
+                                        <td>{{date('d-m-Y', strtotime($usernd->ngaySinh))}}</td>
+                                        <td>{{$usernd->soDienThoai}}</td>
+                                        <td>{{$usernd->nguoiDuyet}}</td>
+                                        <td>
+                                            @if($usernd->tinhTrang == 1)
+                                                <a href="{{route('user.unactive',$usernd->id)}}" type="button" class="btn btn-success edit-user" style="border-radius: 7px;"><i class="fa fa fa-unlock"></i> Hoạt động</a>
+                                            @else
+                                                <a href="{{route('user.active',$usernd->id)}}" type="button" class="btn btn-danger edit-user" style="border-radius: 7px"><i class="fa fa fa-lock"></i> Bị khoá</a>
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{route('user.edit',$usernd->id)}}" type="button" class="btn btn-info edit-user" style="border-radius: 7px"><i class="fa fa fa-info-circle"></i></a>
+                                            <a href=""  type="button" data-id="{{$usernd->id}}" class="btn btn-danger delete-user" style="border-radius: 7px"><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <td colspan="9" style="text-align: center">Không có đơn đăng ký nào được duyệt</td>
+                            @endif
                         </tbody>
                     </table>  
                     

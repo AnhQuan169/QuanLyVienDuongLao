@@ -24,24 +24,26 @@ class DangkythamquanRequest extends FormRequest
     public function rules()
     {
         return [
-            'nguoiDaiDien' => 'required',
-            'soLuong' => 'required|numeric|max:100',
-            'email' => 'required|email',
-            'soDienThoaiDK' => 'required|numeric|max:999999999',
-            'ghiChu' => 'required',
-            'ngayThamQuan' => 'required',
+            'nguoiDaiDienDK' => 'required',
+            'soLuongDK' => 'required|numeric|max:50',
+            'emailDK' => 'required|email',
+            'soDienThoaiDK' => 'required|numeric',
+            'ghiChuDK' => 'required',
+            'ngayThamQuanDK' => 'required|date',
+            'thoigianTQ' => 'required'
         ];
     }
 
     public function messages()
     {
         return [
-            'nguoiDaiDien.required' => 'Vui lòng nhập tên người đại diện',
-            'soLuong.required' => 'Vui lòng nhập số lượng người tham quan',
-            'email.required' => 'Vui lòng nhập email',
+            'nguoiDaiDienDK.required' => 'Vui lòng nhập tên người đại diện',
+            'soLuongDK.required' => 'Vui lòng nhập số lượng người tham quan',
+            'emailDK.required' => 'Vui lòng nhập email',
             'soDienThoaiDK.required' => 'Vui lòng nhập số điện thoại',
-            'ghiChu.required' => 'Vui lòng nhập ghi chú',
-            'ngayThamQuan.required' => 'Vui lòng chọn ngày tham quan',
+            'ghiChuDK.required' => 'Vui lòng nhập ghi chú',
+            'ngayThamQuanDK.required' => 'Vui lòng chọn ngày tham quan',
+            'thoigianTQ.required' => 'Vui lòng chọn giờ tham quan',
         ];
     }
 }

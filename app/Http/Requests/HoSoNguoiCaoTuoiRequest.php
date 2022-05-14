@@ -27,12 +27,17 @@ class HoSoNguoiCaoTuoiRequest extends FormRequest
             'anhDon' => 'required|max:250',
             'anhToKhaiDeNghiTroGiup' => 'required|max:250',
             'anhSoYeuLyLich' => 'required|max:250',
+            'anhGiayChungNhanHIV' =>  '',
             'hoTenNCC' => 'required',
-            'gioiTinNCCh' => 'required',
+            'gioiTinhNCC' => 'required',
             'ngaySinhNCC' => 'required|date',
             'anhDaiDienNCC' => 'required|max:250',
             'CCCD_NCC' => 'required|numeric',
             'soDienThoaiNCC' => 'required|numeric',
+            'diaChiNCC' => 'required',
+            'phong' => 'required',
+            'giuong' => 'required',
+            'ngayVao' => 'required|date',
         ];
     }
 
@@ -48,6 +53,10 @@ class HoSoNguoiCaoTuoiRequest extends FormRequest
             'anhDaiDienNCC.required' => 'Vui lòng ảnh chân dung người cao tuổi',
             'CCCD_NCC.required' => 'Vui lòng nhập số căn cước công dân',
             'soDienThoaiNCC.required' => 'Vui lòng nhập số điện thoại',
+            'diaChiNCC.required' => 'Vui lòng nhập địa chỉ',
+            'phong.required' => 'Vui lòng nhập số phòng',
+            'giuong.required' => 'Vui lòng nhập vị trí giường',
+            'ngayVao.required' => 'Vui lòng chọn ngày vào',
         ];
     }
 }
