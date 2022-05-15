@@ -203,8 +203,8 @@
 
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-3">
-                            <a href="{{route('user.all')}}" class="btn  btn-primary" type="button">Quay lại</a>
-                            <button class="btn  btn-primary save_user" type="submit">Thêm</button>
+                            <a href="{{route('user.all')}}" class="btn btn-instagram" type="button">Quay lại</a>
+                            <button class="btn  btn-success save_user" type="submit">Thêm</button>
                         </div>
                     </div>
                 </form>
