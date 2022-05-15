@@ -5,6 +5,7 @@ use App\Http\Controllers\DangKyThamQuanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HoSoNguoiCaoTuoiController;
+use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\ThongBaoController;
 use App\Http\Controllers\UserController;
 
@@ -129,22 +130,22 @@ Route::middleware('admin')->prefix('admin')->group(function () {
         });
 
         // -----------------Quản lý nhân viên-------------------------------
-        // Route::prefix('nhanvien')->group(function(){
-        //     // === Quản lý danh sách nhân viên
-        //     Route::get('/all-staff', [UserController::class, 'all_staff'])->name('staff.all');
-        //     Route::get('/add-staff', [UserController::class, 'add_staff'])->name('staff.add');
-        //     // Lưu nhân viên mới
-        //     Route::post('/save-staff', [UserController::class, 'save_staff'])->name('staff.save');
-        //     // Xem chi tiết nhân viên 
-        //     Route::get('/edit-staff/{id}', [UserController::class, 'edit_staff'])->name('staff.edit');
-        //     Route::post('/update-staff/{id}', [UserController::class, 'update_user'])->name('user.update');
-        //     // Xoá tài khoản
-        //     Route::delete('/delete-staff/{id}', [UserController::class, 'delete_staff'])->name('staff.delete');
-        //     // Khoá tài khoản
-        //     Route::get('/unactive-staff/{id}', [UserController::class, 'unactive_staff'])->name('staff.unactive');
-        //     // Khởi động tài khoản
-        //     Route::get('/active-staff/{id}', [UserController::class, 'active_staff'])->name('staff.active');
-        // });
+        Route::prefix('nhanvien')->group(function(){
+            // === Quản lý danh sách nhân viên
+            Route::get('/all-employee', [NhanVienController::class, 'all_employee'])->name('employee.all');
+            Route::get('/add-employee', [NhanVienController::class, 'add_employee'])->name('employee.add');
+            // Lưu nhân viên mới
+            Route::post('/save-employee', [NhanVienController::class, 'save_employee'])->name('employee.save');
+            // Xem chi tiết nhân viên 
+            Route::get('/edit-employee/{id}', [NhanVienController::class, 'edit_employee'])->name('employee.edit');
+            Route::post('/update-employee/{id}', [NhanVienController::class, 'update_employee'])->name('employee.update');
+            // Xoá tài khoản
+            Route::delete('/delete-employee/{id}', [NhanVienController::class, 'delete_employee'])->name('employee.delete');
+            // Khoá tài khoản
+            Route::get('/unactive-employee/{id}', [NhanVienController::class, 'unactive_employee'])->name('employee.unactive');
+            // Khởi động tài khoản
+            Route::get('/active-employee/{id}', [NhanVienController::class, 'active_employee'])->name('employee.active');
+        });
     });
 
     // ====================== Nhân viên kho ==================================

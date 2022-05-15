@@ -89,6 +89,12 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="{{route('employee.all')}}"><i class="icon-layers"></i><span>Quản lý nhân viên</span></a>
+                </li>
+                <li>
+                    <a href="{{route('all_notification')}}"><i class="icon-layers"></i><span>Quản lý thông báo</span></a>
+                </li>
+                <li>
                     <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký dịch vụ cho người cao tuổi</span></a>
                 </li>
                 <li>
@@ -100,12 +106,7 @@
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Quản lý nhà cung cấp</span></a>
                 </li>
-                <li>
-                    <a href=""><i class="icon-layers"></i><span>Quản lý nhân viên</span></a>
-                </li>
-                <li>
-                    <a href="{{route('all_notification')}}"><i class="icon-layers"></i><span>Quản lý thông báo</span></a>
-                </li>
+                
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Cập nhật lịch trực của nhân viên</span></a>
                 </li>
