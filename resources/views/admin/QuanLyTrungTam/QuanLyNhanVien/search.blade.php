@@ -25,31 +25,15 @@
             <div class="row justify-content-end" style="margin-bottom: 10px">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 my-2">
                     <div class="form-group">
-                        {{-- <div class="col-md-9" style="display: flex">
-                            <select class="form-control" id="val-skill" name="loaiTaiKhoan">
-                                <option id="tknvkho" value="1">Nhân viên kho</option>
-                                <option id="tknvyte" value="2">Nhân viên y tế</option>
-                            </select>
-                        </div> --}}
                         <form action="{{route('employee.search')}}" method="POST">
-							@csrf
+							{{ csrf_field() }}
 							<div class="search_box pull-right">
-								<input type="text" name="keyword_employee" placeholder="Tìm kiếm"/>
-								<input type="submit" style="display: none" name="search_item" class="btn btn-primary get" value="Tìm kiếm"/>
+								<input value="{{old('keyword_employee')}}" type="text" name="keyword_employee" placeholder="Tìm kiếm"/>
+								<input type="submit" style="display: none" name="search_item" class="btn btn-primary" value="Tìm kiếm" />
 							</div>								
 						</form>
                     </div>
                 </div>
-                {{-- <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 my-2">
-                    <div class="form-group">
-                        <div class="col-md-9" style="display: flex">
-                            <select class="form-control" id="val-skill" name="loaiTaiKhoan">
-                                <option id="tknvkho" value="1">Nhân viên kho</option>
-                                <option id="tknvyte" value="2">Nhân viên y tế</option>
-                            </select>
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 my-2">
                     <div class="log text-right">
                         <a type="button" class="btn btn-primary" style="border-radius: 7px" href="{{route('employee.add')}}"><i class="fa fa-plus"></i> Thêm</a>
@@ -75,8 +59,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (count($employee) > 0)
-                                @foreach ($employee as $key => $val )
+                            @if (count($search_employee) > 0)
+                                @foreach ($search_employee as $key => $val )
                                     <tr>
                                         <td>{{$val->id}}</td>
                                         <td><img src="{{asset('public/admin/uploads/users/'.$val->anhDaiDien)}}" width="150px" /></td>
@@ -112,7 +96,7 @@
                     
                     <div class="col-sm-12 text-right text-center-xs mt-2">
                         <div class="pagination d-flex justify-content-center">
-                            {!!$employee->links('paginationlinks')!!}
+                            {!!$search_employee->links('paginationlinks')!!}
                         </div>
                     </div>
                 </div>
@@ -156,20 +140,20 @@
 
         });
 
-        $('#search-nv').on('keyup',function(){
-            $value = $(this).val();
-            $.ajax({
-                type: 'get',
-                url: 'search-employee',
-                data: {
-                    'search': $value
-                },
-                success:function(data){
-                    $('tbody').html(data);
-                }
-            });
-        })
-        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+        // $('#search-nv').on('keyup',function(){
+        //     $value = $(this).val();
+        //     $.ajax({
+        //         type: 'get',
+        //         url: 'search-employee',
+        //         data: {
+        //             'search': $value
+        //         },
+        //         success:function(data){
+        //             $('tbody').html(data);
+        //         }
+        //     });
+        // })
+        // $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
         
     </script>
 @endsection

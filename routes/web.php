@@ -145,6 +145,9 @@ Route::middleware('admin')->prefix('admin')->group(function () {
             Route::get('/unactive-employee/{id}', [NhanVienController::class, 'unactive_employee'])->name('employee.unactive');
             // Khởi động tài khoản
             Route::get('/active-employee/{id}', [NhanVienController::class, 'active_employee'])->name('employee.active');
+            // Tìm kiếm với Ajax
+            Route::post('/search-employee', [NhanVienController::class, 'search_employee'])->name('employee.search');
+            
         });
     });
 

@@ -160,8 +160,8 @@ class NhanVienController extends Controller
         }
     }
     // Xoá nhân viên
-    public function delete_employee(){
-
+    public function delete_employee($id){
+        User::find($id)->delete();
     }
     // Khoá tài khoản
     public function unactive_employee($id){
@@ -173,7 +173,7 @@ class NhanVienController extends Controller
             Toastr::success('Khoá tài khoản', 'Thành công',);
             return redirect()->back();
         }
-        return redirect()->back();
+        return redirect()->route('employee.all');
     }
     // Khởi động tài khoản
     public function active_employee($id){
@@ -184,6 +184,27 @@ class NhanVienController extends Controller
             ]);
             Toastr::success('Khởi động tài khoản', 'Thành công',);
             return redirect()->back();
+        }
+        return redirect()->route('employee.all');
+    }
+
+    // Tìm kiếm nhân viên với Ajax
+    public function search_employee(Request $request){
+        if(Gate::allows('quanly')) {
+            $title='Danh sách nhân viên';
+            $url = $request->url();
+            $keywords = $request->keyword_employee;
+            if($keywords){
+                $search_employee = User::where('tinhTrang','>',0)
+                ->whereBetween('loaiTaiKhoan',[1,2])
+                ->orderBy('loaiTaiKhoan','asc')
+                ->where('hoTen','like','%'.$keywords.'%')
+                ->paginate(5);
+                return view('admin.QuanLyTrungTam.QuanLyNhanVien.search', compact('search_employee','url','title'));
+            }else{
+                return redirect()->route('employee.all');
+            }
+            
         }
         return redirect()->back();
     }
