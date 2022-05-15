@@ -2,7 +2,7 @@
 @section('admin_content')
 <!--Start Page Title-->
 <div class="page-title-box">
-    <h4 class="page-title">Danh sách người dùng được duyệt</h4>
+    <h4 class="page-title">{{$title}}</h4>
     <ol class="breadcrumb">
         <li>
             <a href="{{route('dashboard')}}">Dashboard</a>

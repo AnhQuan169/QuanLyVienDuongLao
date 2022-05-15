@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
-    //--------------Quản lý người dùng--------------
+    //================== Admin ======================
+    // --------------- Quản lý người dùng -----------------
     // Hiển thị danh sách người dùng đã được duyệt
     public function all_user(Request $request){
         if(Gate::allows('quanly')) {
@@ -263,5 +264,7 @@ class UserController extends Controller
     public function delete_user($id){
         User::find($id)->delete();
     }
+
+    
 
 }

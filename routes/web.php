@@ -33,6 +33,9 @@ Route::get('/logout-admin', [AdminController::class, 'logout_admin'])->name('log
 Route::middleware('admin')->prefix('admin')->group(function () {
 
     Route::get('/dashboard', [AdminController::class, 'show_dashboard'])->name('dashboard');
+    // Cập nhật thông tin cá nhân
+    Route::get('/admin-profile/{id}', [AdminController::class, 'admin_profile'])->name('admin.profile');
+    Route::post('/update-admin-profile/{id}', [AdminController::class, 'update_admin_profile'])->name('admin.profile.update');
 
     // ================ Quản lý trung tâm ===========================
     Route::prefix('quanly')->group(function(){
@@ -124,10 +127,34 @@ Route::middleware('admin')->prefix('admin')->group(function () {
             // Mở hoạt động của hồ sơ
             Route::get('/active-warehouse-elderly/{id}', [HoSoNguoiCaoTuoiController::class, 'active_warehouse_elderly'])->name('elderly.active.warehouse');
         });
+
+        // -----------------Quản lý nhân viên-------------------------------
+        // Route::prefix('nhanvien')->group(function(){
+        //     // === Quản lý danh sách nhân viên
+        //     Route::get('/all-staff', [UserController::class, 'all_staff'])->name('staff.all');
+        //     Route::get('/add-staff', [UserController::class, 'add_staff'])->name('staff.add');
+        //     // Lưu nhân viên mới
+        //     Route::post('/save-staff', [UserController::class, 'save_staff'])->name('staff.save');
+        //     // Xem chi tiết nhân viên 
+        //     Route::get('/edit-staff/{id}', [UserController::class, 'edit_staff'])->name('staff.edit');
+        //     Route::post('/update-staff/{id}', [UserController::class, 'update_user'])->name('user.update');
+        //     // Xoá tài khoản
+        //     Route::delete('/delete-staff/{id}', [UserController::class, 'delete_staff'])->name('staff.delete');
+        //     // Khoá tài khoản
+        //     Route::get('/unactive-staff/{id}', [UserController::class, 'unactive_staff'])->name('staff.unactive');
+        //     // Khởi động tài khoản
+        //     Route::get('/active-staff/{id}', [UserController::class, 'active_staff'])->name('staff.active');
+        // });
     });
 
     // ====================== Nhân viên kho ==================================
     Route::prefix('nhanvienkho')->group(function(){
+        
+    });
+
+
+    // ===================== Nhân viên y tế =============================
+    Route::prefix('nhanvienyte')->group(function(){
         
     });
 });

@@ -176,7 +176,7 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                            <li> <a href="#"> <i class="fa fa-user"></i> Thông tin cá nhân </a> </li>
+                            <li> <a href="{{route('admin.profile',Auth::user()->id)}}"> <i class="fa fa-user"></i> Thông tin cá nhân </a> </li>
                             <li> <a href="#"> <i class="fa fa-info"></i> Thay đổi mật khẩu </a> </li>
                             <li> <a href="{{route('logout_admin')}}"> <i class="fa fa-lock"></i> Đăng xuất </a> </li>
                             </ul>
