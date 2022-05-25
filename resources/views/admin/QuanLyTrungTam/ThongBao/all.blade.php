@@ -2,16 +2,16 @@
 @section('admin_content')
 <!--Start Page Title-->
 <div class="page-title-box">
-    <h4 class="page-title">Danh sách thông báo</h4>
+    <h4 class="page-title">{{$title}}</h4>
     <ol class="breadcrumb">
         <li>
             <a href="{{route('dashboard')}}">Dashboard</a>
         </li>
         <li>
-            <a href="{{route('all_notification')}}">Quản lý thông báo</a>
+            <a>Quản lý thông báo</a>
         </li>
         <li class="active">
-            <a href="{{route('all_notification')}}">Danh sách thông báo</a>
+            <a href="{{$url}}">{{$title}}</a>
         </li>
     </ol>
     <div class="clearfix"></div>
@@ -26,23 +26,22 @@
             <div class="row justify-content-end" style="margin-bottom: 10px">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-2">
                     <div class="log text-right">
-                        <a type="button" class="btn btn-primary" style="border-radius: 7px" href="{{route('add_notification')}}" data-target="#thongbao-add" data-toggle="thongbao"><i class="fa fa-plus"></i> Thêm</a>
+                        <a type="button" class="btn btn-primary" style="border-radius: 7px" href="{{route('notification.add')}}" data-target="#thongbao-add" data-toggle="thongbao"><i class="fa fa-plus"></i> Thêm</a>
                     </div>
                 </div>
             </div>
             
             <div id="table_data">
-                {{-- @include('admin.QuanLyTrungTam.ThongBao.all_data') --}}
                 <div class="table-responsive">
-                    <table class="display table table-bordered">
+                    <table id="example" class="display table table-bordered">
                         <thead>
                             <tr>
                                 <th>Mã thông báo</th>
                                 <th>Chủ đề</th>
                                 <th>Nội dung</th>
                                 <th>Thời gian đăng</th>
-                                <th>Quản lý trung tâm</th>
-                                <th></th>
+                                <th>Người đăng</th>
+                                <th>Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,11 +61,11 @@
                         </tbody>
                     </table>  
                     
-                    <div class="col-sm-12 text-right text-center-xs mt-2">
+                    {{-- <div class="col-sm-12 text-right text-center-xs mt-2">
                         <div class="pagination d-flex justify-content-center">
                             {!!$thongbao->links('paginationlinks')!!}
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

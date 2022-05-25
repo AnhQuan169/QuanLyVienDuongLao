@@ -22,7 +22,7 @@ class DangKyThamQuanController extends Controller
             ->where('ngayThamQuanDK','>=',$today)
             ->join('users','users.id','=','tbl_dangkythamquan.id_quanly')
             // ->where('tinhTrang','1')
-            ->paginate(5);
+            ->get();
             return view('admin.QuanLyTrungTam.DangKyThamQuan.DanhSach.all', compact('dangkythamquan','title'));
         }
         return redirect()->back();
@@ -94,7 +94,7 @@ class DangKyThamQuanController extends Controller
             $title = 'Duyệt đơn đăng ký tham quan trung tâm';
             $dangkythamquan = Dangkythamquan::orderBy('id_dangky','desc')
             ->where('tinhTrangDK','0')
-            ->paginate(5);
+            ->get();
             return view('admin.QuanLyTrungTam.DangKyThamQuan.Duyet.browse_application', compact('dangkythamquan','title'));
         }
         return redirect()->back();
@@ -136,7 +136,7 @@ class DangKyThamQuanController extends Controller
             $dangkythamquan = Dangkythamquan::orderBy('ngayThamQuanDK','desc')
             ->where('ngayThamQuanDK','<',$today)
             ->join('users','users.id','=','tbl_dangkythamquan.id_quanly')
-            ->paginate(5);
+            ->get();
             return view('admin.QuanLyTrungTam.DangKyThamQuan.ThungRac.all', compact('dangkythamquan','title','url'));
         }
         return redirect()->back();
@@ -152,7 +152,7 @@ class DangKyThamQuanController extends Controller
             $dangkythamquan = Dangkythamquan::orderBy('thoigianTQ','asc')
             ->where('ngayThamQuanDK','=',$today)
             ->join('users','users.id','=','tbl_dangkythamquan.id_quanly')
-            ->paginate(5);
+            ->get();
             return view('admin.QuanLyTrungTam.DangKyThamQuan.ThamQuanTheoNgay.all', compact('dangkythamquan','title','url'));
         }
         return redirect()->back();

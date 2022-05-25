@@ -31,9 +31,8 @@
             </div>
             
             <div id="table_data">
-                {{-- @include('admin.QuanLyTrungTam.ThongBao.all_data') --}}
                 <div class="table-responsive">
-                    <table class="display table table-bordered">
+                    <table id="example" class="display table table-bordered">
                         <thead>
                             <tr>
                                 <th>Mã người dùng</th>
@@ -77,11 +76,11 @@
                         </tbody>
                     </table>  
                     
-                    <div class="col-sm-12 text-right text-center-xs mt-2">
+                    {{-- <div class="col-sm-12 text-right text-center-xs mt-2">
                         <div class="pagination d-flex justify-content-center">
                             {!!$user->links('paginationlinks')!!}
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

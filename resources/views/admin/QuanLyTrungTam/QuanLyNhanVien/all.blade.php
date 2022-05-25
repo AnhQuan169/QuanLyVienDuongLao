@@ -23,14 +23,8 @@
     <div class="col-md-12">
         <div class="white-box">
             <div class="row justify-content-end" style="margin-bottom: 10px">
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 my-2">
+                {{-- <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 my-2">
                     <div class="form-group">
-                        {{-- <div class="col-md-9" style="display: flex">
-                            <select class="form-control" id="val-skill" name="loaiTaiKhoan">
-                                <option id="tknvkho" value="1">Nhân viên kho</option>
-                                <option id="tknvyte" value="2">Nhân viên y tế</option>
-                            </select>
-                        </div> --}}
                         <form action="{{route('employee.search')}}" method="POST">
 							@csrf
 							<div class="search_box pull-right">
@@ -39,18 +33,8 @@
 							</div>								
 						</form>
                     </div>
-                </div>
-                {{-- <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 my-2">
-                    <div class="form-group">
-                        <div class="col-md-9" style="display: flex">
-                            <select class="form-control" id="val-skill" name="loaiTaiKhoan">
-                                <option id="tknvkho" value="1">Nhân viên kho</option>
-                                <option id="tknvyte" value="2">Nhân viên y tế</option>
-                            </select>
-                        </div>
-                    </div>
                 </div> --}}
-                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 my-2">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-2">
                     <div class="log text-right">
                         <a type="button" class="btn btn-primary" style="border-radius: 7px" href="{{route('employee.add')}}"><i class="fa fa-plus"></i> Thêm</a>
                     </div>
@@ -58,9 +42,8 @@
             </div>
             
             <div id="table_data">
-                {{-- @include('admin.QuanLyTrungTam.ThongBao.all_data') --}}
                 <div class="table-responsive">
-                    <table class="display table table-bordered">
+                    <table id="example" class="display table table-bordered">
                         <thead>
                             <tr>
                                 <th>Mã người dùng</th>
@@ -110,11 +93,11 @@
                         </tbody>
                     </table>  
                     
-                    <div class="col-sm-12 text-right text-center-xs mt-2">
+                    {{-- <div class="col-sm-12 text-right text-center-xs mt-2">
                         <div class="pagination d-flex justify-content-center">
                             {!!$employee->links('paginationlinks')!!}
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

@@ -39,6 +39,10 @@
           <script src="js/respond.min.js"></script>
     <![endif]-->
 
+    {{-- Data table --}}
+    <link href="{{asset('public/admin/plugins/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('public/admin/plugins/datatables/css/jquery.dataTables-custom.css')}}" rel="stylesheet" type="text/css"/>
+
 </head>
 
 <body class="sticky-header">
@@ -93,7 +97,10 @@
                     <a href="{{route('employee.all')}}"><i class="icon-layers"></i><span>Quản lý nhân viên</span></a>
                 </li>
                 <li>
-                    <a href="{{route('all_notification')}}"><i class="icon-layers"></i><span>Quản lý thông báo</span></a>
+                    <a href="{{route('notification.all')}}"><i class="icon-layers"></i><span>Quản lý thông báo</span></a>
+                </li>
+                <li>
+                    <a href="{{route('supplier.all')}}"><i class="icon-layers"></i><span>Quản lý nhà cung cấp</span></a>
                 </li>
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Duyệt đề xuất báo cáo kho</span></a>
@@ -101,9 +108,7 @@
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Quản lý dịch vụ trung tâm</span></a>
                 </li>
-                <li>
-                    <a href=""><i class="icon-layers"></i><span>Quản lý nhà cung cấp</span></a>
-                </li>
+                
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Cập nhật lịch trực của nhân viên</span></a>
                 </li>
@@ -119,8 +124,12 @@
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Xuất báo cáo nhập - xuất thuốc</span></a>
                 </li>
-                <li>
+                <li class="menu-list">
                     <a href=""><i class="icon-layers"></i><span>Quản lý cơ sở vật chất</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{route('infrastructure.all')}}">Danh sách cơ sở vật chất</a></li>
+                        <li><a href="{{route('warehouse.infrastructure.all')}}">Kho lưu trữ</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Đề xuất báo cáo kho</span></a>
@@ -137,7 +146,7 @@
                     <a href=""><i class="icon-layers"></i><span>Cập nhật tình trạng vật tư y tế đang dùng</span></a>
                 </li>
                 <li>
-                    <a href=""><i class="icon-layers"></i><span>Cập nhật tình hình sức khoẻ người cao tuổi</span></a>
+                    <a href="{{route('health.elderly.all')}}"><i class="icon-layers"></i><span>Cập nhật tình hình sức khoẻ người cao tuổi</span></a>
                 </li>
                 @endhasrole
                 
@@ -227,8 +236,9 @@
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="{{asset('public/admin/js/sweetalert.js')}}"></script>
 
-
-    <script src="{{asset('public/admin/js/notification.js')}}"></script>
+    {{-- Data table --}}
+    <script src="{{asset('public/admin/plugins/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('public/admin/pages/table-data.js')}}"></script>
     
     {{-- Hiển thị thông báo --}}
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>

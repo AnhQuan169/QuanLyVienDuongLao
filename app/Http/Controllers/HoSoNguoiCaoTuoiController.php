@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\HoSoNguoiCaoTuoiRequest;
+use App\Http\Requests\TinhHinhSucKhoeRequest;
 use App\Models\HoSoNguoiCaoTuoi;
+use App\Models\TinhHinhSucKhoe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Brian2694\Toastr\Facades\Toastr;
@@ -12,6 +14,8 @@ use Illuminate\Support\Facades\Gate;
 
 class HoSoNguoiCaoTuoiController extends Controller
 {
+    // === Quản lý trung tâm ===
+    // =============== Quản lý hồ sơ người cao tuổi ==========================
     //-----------Danh sách người cao tuổi đã được duyệt----------------
     // Hiển thị danh sách
     public function all_elderly(Request $request){
@@ -21,7 +25,7 @@ class HoSoNguoiCaoTuoiController extends Controller
             $elderly = HoSoNguoiCaoTuoi::where('tinhTrangNCC',1)
             ->orderBy('id_nguoicaotuoi','asc')
             ->join('users','users.id','=','tbl_hosonguoicaotuoi.id_nguoidung')
-            ->paginate(5);
+            ->get();
 
             return view('admin.QuanLyTrungTam.QuanLyHoSoNguoiCaoTuoi.DanhSach.all', compact('title','url','elderly'));
         }
@@ -226,7 +230,7 @@ class HoSoNguoiCaoTuoiController extends Controller
             $elderly = HoSoNguoiCaoTuoi::where('tinhTrangNCC',0)
             ->orderBy('id_nguoicaotuoi','asc')
             ->join('users','users.id','=','tbl_hosonguoicaotuoi.id_nguoidung')
-            ->paginate(5);
+            ->get();
             return view('admin.QuanLyTrungTam.QuanLyHoSoNguoiCaoTuoi.Duyet.all', compact('title','url','elderly'));
         }
         return redirect()->back();
@@ -267,7 +271,7 @@ class HoSoNguoiCaoTuoiController extends Controller
             $elderly = HoSoNguoiCaoTuoi::where('tinhTrangNCC',2)
             ->orderBy('id_nguoicaotuoi','asc')
             ->join('users','users.id','=','tbl_hosonguoicaotuoi.id_nguoidung')
-            ->paginate(5);
+            ->get();
             return view('admin.QuanLyTrungTam.QuanLyHoSoNguoiCaoTuoi.KhoDuLieu.all', compact('title','url','elderly'));
         }
         return redirect()->back();
@@ -285,4 +289,92 @@ class HoSoNguoiCaoTuoiController extends Controller
         return redirect()->back();
     }
 
+    // === Nhân viên y tế ===
+    // ================ Cập nhật tình hình sức khoẻ người cao tuổi =====================
+    // ------- Danh sách người cao tuổi ----------------
+    public function all_health_elderly(Request $request){
+        if(Gate::allows('nhanvienyte')) {
+            $title='Danh sách hồ sơ người cao tuổi';
+            $url = $request->url();
+            $elderly = HoSoNguoiCaoTuoi::where('tinhTrangNCC',1)
+            ->join('users','users.id','=','tbl_hosonguoicaotuoi.id_nguoidung')
+            ->get();
+
+            return view('admin.NhanVienYTe.CapNhatTinhHinhSucKhoe.DanhSach.all', compact('title','url','elderly'));
+        }
+        return redirect()->back();
+    }
+
+    // Chi tiết người cao tuổi
+    public function detail_health_elderly(Request $request,$id){
+        if(Gate::allows('nhanvienyte')) {
+            // Thêm mới
+            $title='Tình hình sức khoẻ';
+            $url = $request->url();
+            $elderly = HoSoNguoiCaoTuoi::where('id_nguoicaotuoi',$id)->first();
+
+            // Danh sách tình hình sức khoẻ
+            $health_elderly = TinhHinhSucKhoe::where('id_nguoicaotuoi',$id)
+            ->join('users','users.id','=','tbl_tinhhinhsuckhoe.id_nhanvienyte')
+            ->get();
+
+            return view('admin.NhanVienYTe.CapNhatTinhHinhSucKhoe.ChiTiet.detail', compact('title','url','elderly','health_elderly'));
+        }
+        return redirect()->back();
+    }
+
+    // Lưu thông tin tình hình sức khoẻ
+    public function save_health_elderly(TinhHinhSucKhoeRequest $request,$id){
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $data = array();
+        $data['id_nguoicaotuoi'] = $id;
+        $data['huyetAp'] = $request->huyetAp;
+        $data['nhipTim'] = $request->nhipTim;
+        $data['canNang'] = $request->canNang;
+        $data['thoiGian'] = now();
+        $data['ngayKham'] = now();
+        $data['trieuChung'] = $request->trieuChung;
+        $data['ghiChu'] = $request->ghiChu;
+        $data['id_nhanvienyte'] = Auth::user()->id;
+        TinhHinhSucKhoe::insert($data);
+        Toastr::success('Thêm mới thành công', 'Thành công',);
+        return redirect()->back();
+    }
+
+    // Chỉnh sửa tình hình sức khoẻ người cao tuổi
+    public function edit_health_elderly(Request $request,$id){
+        if(Gate::allows('nhanvienyte')) {
+            $title = 'Chi tiết tình hình sức khoẻ';
+            $url = $request->url();
+            $thsk = TinhHinhSucKhoe::where('id_thsk',$id)
+            ->join('tbl_hosonguoicaotuoi','tbl_hosonguoicaotuoi.id_nguoicaotuoi','=','tbl_tinhhinhsuckhoe.id_nguoicaotuoi')
+            ->join('users','users.id','=','tbl_tinhhinhsuckhoe.id_nhanvienyte')
+            ->first();
+            return view('admin.NhanVienYTe.CapNhatTinhHinhSucKhoe.ChiTiet.edit', compact('thsk','title','url'));
+        }
+        return redirect()->back();
+    }
+
+    // Lưu thông tin tình hình sức khoẻ được chỉnh sửa
+    public function update_health_elderly(TinhHinhSucKhoeRequest $request,$id){
+        $data = array();
+        $data['huyetAp'] = $request->huyetAp;
+        $data['nhipTim'] = $request->nhipTim;
+        $data['canNang'] = $request->canNang;
+        $data['trieuChung'] = $request->trieuChung;
+        $data['ghiChu'] = $request->ghiChu;
+        $data['id_nhanvienyte'] = Auth::user()->id;
+
+        TinhHinhSucKhoe::find($id)->update($data);
+        Toastr::success('Cập nhật thông tin thành công', 'Thành công',);
+        return redirect()->back();
+    }
+
+    // Xoá tình hình sức khoẻ được chọn của người cao tuổi
+    public function delete_health_elderly($id){
+        TinhHinhSucKhoe::find($id)->delete();
+    }
+
+    // ====================== Cập nhật bệnh án người cao tuổi =========================
+    
 }

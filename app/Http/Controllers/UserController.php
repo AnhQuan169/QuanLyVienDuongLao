@@ -25,7 +25,7 @@ class UserController extends Controller
             $user = User::where('tinhTrang','>',0)
             ->where('loaiTaiKhoan',3)
             ->orderBy('id','desc')
-            ->paginate(5);
+            ->get();
             return view('admin.QuanLyTrungTam.QuanLyNguoiDung.DanhSach.all', compact('title','url','user'));
         }
         return redirect()->back();
@@ -223,7 +223,7 @@ class UserController extends Controller
             ->where('loaiTaiKhoan',3)
             // ->join('tbl_xaphuongthitran','tbl_xaphuongthitran.xa_id','=','users.diaChi')
             ->orderBy('id','asc')
-            ->paginate(5);
+            ->get();
             return view('admin.QuanLyTrungTam.QuanLyNguoiDung.Duyet.all', compact('title','url','user'));
         }
         return redirect()->back();

@@ -1,11 +1,19 @@
 
 <script type="text/javascript">
+
+	// ===== Thông báo ==========
     // Chỉnh sửa thông báo
 	CKEDITOR.replace('ckeditor');
 	// Thêm thông báo
 	CKEDITOR.replace('ckeditor1');
-	// Thêm nội dung sản phẩm
-	// CKEDITOR.replace('ckeditor2');
+
+	// ===== Tình hình sức khoẻ ========
+	// Thêm triệu chứng
+	CKEDITOR.replace('ckeditor2');
+	// Thêm ghi chú
+	CKEDITOR.replace('ckeditor3');
+
+
 	// // Chỉnh sửa mô tả sản phẩm
 	// CKEDITOR.replace('ckeditor3');
 	// // Chỉnh sửa nội dung sản phẩm

@@ -22,7 +22,7 @@ class NhanVienController extends Controller
             $employee = User::where('tinhTrang','>',0)
             ->whereBetween('loaiTaiKhoan',[1,2])
             ->orderBy('loaiTaiKhoan','asc')
-            ->paginate(5);
+            ->get();
             return view('admin.QuanLyTrungTam.QuanLyNhanVien.all', compact('title','url','employee'));
         }
         return redirect()->back();
