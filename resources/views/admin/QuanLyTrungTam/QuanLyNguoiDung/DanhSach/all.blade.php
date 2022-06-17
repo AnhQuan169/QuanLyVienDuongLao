@@ -51,7 +51,7 @@
                                 @foreach ($user as $key => $usernd )
                                     <tr>
                                         <td>{{$usernd->id}}</td>
-                                        <td><img src="{{asset('public/admin/uploads/users/'.$usernd->anhDaiDien)}}" width="150px" /></td>
+                                        <td><img src="{{asset('public/storage/'.$usernd->anhDaiDien)}}" width="150px" /></td>
                                         <td>{{$usernd->hoTen}}</td>
                                         <td>{{$usernd->email}}</td>
                                         <td>{{date('d-m-Y', strtotime($usernd->ngaySinh))}}</td>
@@ -65,7 +65,7 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{route('user.edit',$usernd->id)}}" type="button" class="btn btn-info edit-user" style="border-radius: 7px"><i class="fa fa fa-info-circle"></i></a>
+                                            <a href="{{route('user.edit',$usernd->id)}}" type="button" class="btn btn-info edit-user" style="border-radius: 7px;margin-bottom: 5px;"><i class="fa fa fa-info-circle"></i></a>
                                             <a href=""  type="button" data-id="{{$usernd->id}}" class="btn btn-danger delete-user" style="border-radius: 7px"><i class="fa fa-times"></i></a>
                                         </td>
                                     </tr>

@@ -98,10 +98,10 @@
                         <div class="col-md-9">
                             <input name="anhDaiDien" class="form-control" value="{{$employee->anhDaiDien}}" type="file">
                             <div id="large12" style="display: none;" class="cover-image-ncc">
-                                <img src="{{asset('public/admin/uploads/users/'.$employee->anhDaiDien)}}" alt="">
+                                <img src="{{asset('public/storage/'.$employee->anhDaiDien)}}" alt="">
                                 <div id="close12" class="close-ncc">&times</div>
                             </div>
-                            <img id="small12" class="small-nd" src="{{asset('public/admin/uploads/users/'.$employee->anhDaiDien)}}" />
+                            <img id="small12" class="small-nd" src="{{asset('public/storage/'.$employee->anhDaiDien)}}" />
                         </div>
                     </div>
                     <div class="form-group">

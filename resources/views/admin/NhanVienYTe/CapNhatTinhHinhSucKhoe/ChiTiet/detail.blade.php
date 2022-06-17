@@ -8,7 +8,7 @@
             <a href="{{route('dashboard')}}">Dashboard</a>
         </li>
         <li>
-            <a>Quản lý người cao tuổi</a>
+            <a>Cập nhật tình hình sức khoẻ</a>
         </li>
         <li class="active">
             <a href="{{$url}}">{{$title}}</a>
@@ -154,7 +154,7 @@
                                                     </tr>
                                                 @endforeach
                                             @else
-                                                <td colspan="8" style="text-align: center">Không có thông tin nào</td>
+                                                <td colspan="9" style="text-align: center">Không có thông tin nào</td>
                                             @endif
                                         </tbody>
                                     </table>  

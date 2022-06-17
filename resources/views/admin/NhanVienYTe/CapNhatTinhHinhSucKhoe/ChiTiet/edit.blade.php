@@ -8,7 +8,7 @@
             <a href="{{route('dashboard')}}">Dashboard</a>
         </li>
         <li>
-            <a>Quản lý người cao tuổi</a>
+            <a>Cập nhật tình hình sức khoẻ</a>
         </li>
         <li class="active">
             <a href="{{$url}}">{{$title}}</a>

@@ -50,7 +50,7 @@
                                 @foreach ($elderly as $key => $usernd )
                                     <tr>
                                         <td>{{$usernd->id_nguoicaotuoi}}</td>
-                                        <td><img src="{{asset('public/admin/uploads/nguoicaotuoi/anhdaidien/'.$usernd->anhDaiDienNCC)}}" width="150px" /></td>
+                                        <td><img src="{{asset('public/storage/'.$usernd->anhDaiDienNCC)}}" width="150px" /></td>
                                         <td>{{$usernd->hoTenNCC}}</td>
                                         <td><a href="{{route('user.edit',$usernd->id)}}"  type="button">{{$usernd->hoTen}}</a></td>
                                         <td>{{date('d-m-Y', strtotime($usernd->ngaySinhNCC))}}</td>

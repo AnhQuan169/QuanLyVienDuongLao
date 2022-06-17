@@ -27,7 +27,6 @@ class HoSoNguoiCaoTuoiRequest extends FormRequest
             'anhDon' => 'required|max:250',
             'anhToKhaiDeNghiTroGiup' => 'required|max:250',
             'anhSoYeuLyLich' => 'required|max:250',
-            'anhGiayChungNhanHIV' =>  '',
             'hoTenNCC' => 'required',
             'gioiTinhNCC' => 'required',
             'ngaySinhNCC' => 'required|date',

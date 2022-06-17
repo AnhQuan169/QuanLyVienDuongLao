@@ -32,6 +32,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css" />
     <link rel="stylesheet" href="{{asset('public/admin/css/css/fontawesome/all.min.css')}}">
+
+    <link href="{{asset('public/admin/plugins/summernote-master/summernote.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('public/admin/plugins/summernote-master/summernote-bs2.css')}}" rel="stylesheet" type="text/css" />
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -40,6 +44,7 @@
     <![endif]-->
 
     {{-- Data table --}}
+    {{-- Editor --}}
     <link href="{{asset('public/admin/plugins/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('public/admin/plugins/datatables/css/jquery.dataTables-custom.css')}}" rel="stylesheet" type="text/css"/>
 
@@ -53,7 +58,16 @@
 
         <!--logo-->
         <div class="logo">
-            <a href="index.html"><img src="{{asset('public/admin/images/logo.png')}}" alt=""></a>
+            {{-- <a href="index.html"><img src="{{asset('public/admin/images/logo.png')}}" alt=""></a> --}}
+            <p style="font-size: 20px;padding: 20px 0;color: #fff;">
+                @if(Auth::user()->loaiTaiKhoan==0)
+                    Quản lý trung tâm
+                @elseif (Auth::user()->loaiTaiKhoan==1)
+                    Nhân viên kho
+                @else
+                    Nhân viên y tế
+                @endif
+            </p>
         </div>
 
         <div class="logo-icon text-center">
@@ -103,23 +117,32 @@
                     <a href="{{route('supplier.all')}}"><i class="icon-layers"></i><span>Quản lý nhà cung cấp</span></a>
                 </li>
                 <li>
+                    <a href="{{route('posts.all')}}"><i class="icon-layers"></i><span>Quản lý bài viết</span></a>
+                </li>
+                <li>
+                    <a href="{{route('slides.all')}}"><i class="icon-layers"></i><span>Quản lý slide</span></a>
+                </li>
+                <li>
+                    <a href="{{route('links.all')}}"><i class="icon-layers"></i><span>Quản lý liên kết</span></a>
+                </li>
+                <li>
                     <a href=""><i class="icon-layers"></i><span>Duyệt đề xuất báo cáo kho</span></a>
                 </li>
                 <li>
-                    <a href=""><i class="icon-layers"></i><span>Quản lý dịch vụ trung tâm</span></a>
-                </li>
-                
-                <li>
                     <a href=""><i class="icon-layers"></i><span>Cập nhật lịch trực của nhân viên</span></a>
                 </li>
-                <li>
+                <li class="menu-list">
                     <a href=""><i class="icon-layers"></i><span>Thống kê</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{route('number.categories')}}">Số lượng các danh mục</a></li>
+                        <li><a href="{{route('statistical.registerToVisit')}}">Số lượng đăng ký tham quan theo tháng</a></li>
+                    </ul>
                 </li>
                 @endhasrole
                 {{-- Nhân viên kho --}}
                 @hasrole('1')
                 <li>
-                    <a href=""><i class="icon-layers"></i><span>Quản lý xuất - nhập thuốc</span></a>
+                    <a href="{{route('medicine.all')}}"><i class="icon-layers"></i><span>Quản lý thuốc</span></a>
                 </li>
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Xuất báo cáo nhập - xuất thuốc</span></a>
@@ -137,17 +160,15 @@
                 @endhasrole
                 @hasrole('2')
                 <li>
-                    <a href=""><i class="icon-layers"></i><span>Cập nhật thuốc điều trị</span></a>
+                    <a href="{{route('health.elderly.all')}}"><i class="icon-layers"></i><span>Cập nhật tình hình sức khoẻ người cao tuổi</span></a>
                 </li>
                 <li>
-                    <a href=""><i class="icon-layers"></i><span>Cập nhật bệnh án người cao tuổi</span></a>
+                    <a href="{{route('medical.records.all')}}"><i class="icon-layers"></i><span>Cập nhật bệnh án người cao tuổi</span></a>
                 </li>
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Cập nhật tình trạng vật tư y tế đang dùng</span></a>
                 </li>
-                <li>
-                    <a href="{{route('health.elderly.all')}}"><i class="icon-layers"></i><span>Cập nhật tình hình sức khoẻ người cao tuổi</span></a>
-                </li>
+                
                 @endhasrole
                 
 
@@ -178,7 +199,7 @@
                     @if(Auth::check())
                         <li>
                             <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <img src="{{asset('public/admin/images/users/avatar-6.jpg')}}" alt="" />
+                                <img src="{{asset('public/storage/'.Auth::user()->anhDaiDien)}}" alt="" />
                                 {{Auth::user()->hoTen}}
                                 <span class="caret"></span>
                             </a>
@@ -239,6 +260,10 @@
     {{-- Data table --}}
     <script src="{{asset('public/admin/plugins/datatables/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('public/admin/pages/table-data.js')}}"></script>
+
+    <script type="text/javascript" src="{{asset('public/admin/plugins/summernote-master/summernote.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/admin/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js')}}"></script>
     
     {{-- Hiển thị thông báo --}}
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
@@ -267,10 +292,7 @@
     <script src="{{asset('public/admin/ckeditor/ckeditor.js')}}"></script>
     
     @include('More.ckeditor')
-    @yield('ajax_js')
-
-
-    
+    @yield('ajax_js')    
 
 </body>
 

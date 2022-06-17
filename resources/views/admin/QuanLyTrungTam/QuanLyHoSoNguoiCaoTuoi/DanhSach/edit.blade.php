@@ -70,10 +70,10 @@
                         <div class="col-md-9">
                             <input name="anhDaiDienNCC" class="form-control" value="{{$elderly->anhDaiDienNCC}}" type="file">
                             <div id="large1" style="display: none;" class="cover-image-ncc">
-                                <img src="{{asset('public/admin/uploads/nguoicaotuoi/anhdaidien/'.$elderly->anhDaiDienNCC)}}" alt="">
+                                <img src="{{asset('public/storage/'.$elderly->anhDaiDienNCC)}}" alt="">
                                 <div id="close1" class="close-ncc">&times</div>
                             </div>
-                            <img id="small1" class="small-nd" src="{{asset('public/admin/uploads/nguoicaotuoi/anhdaidien/'.$elderly->anhDaiDienNCC)}}" />
+                            <img id="small1" class="small-nd" src="{{asset('public/storage/'.$elderly->anhDaiDienNCC)}}" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -99,10 +99,10 @@
                         <div class="col-md-9">
                             <input name="anhDon" class="form-control" value="{{$elderly->anhDon}}" type="file">
                             <div id="large2" style="display: none;" class="cover-image-ncc">
-                                <img src="{{asset('public/admin/uploads/nguoicaotuoi/anhdondangky/'.$elderly->anhDon)}}" alt="">
+                                <img src="{{asset('public/storage/'.$elderly->anhDon)}}" alt="">
                                 <div id="close2" class="close-ncc">&times</div>
                             </div>
-                            <img id="small2" class="small-nd" src="{{asset('public/admin/uploads/nguoicaotuoi/anhdondangky/'.$elderly->anhDon)}}" />
+                            <img id="small2" class="small-nd" src="{{asset('public/storage/'.$elderly->anhDon)}}" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -110,10 +110,10 @@
                         <div class="col-md-9">
                             <input name="anhToKhaiDeNghiTroGiup" class="form-control" value="{{$elderly->anhToKhaiDeNghiTroGiup}}" type="file">
                             <div id="large3" style="display: none;" class="cover-image-ncc">
-                                <img src="{{asset('public/admin/uploads/nguoicaotuoi/anhtokhai/'.$elderly->anhToKhaiDeNghiTroGiup)}}" alt="">
+                                <img src="{{asset('public/storage/'.$elderly->anhToKhaiDeNghiTroGiup)}}" alt="">
                                 <div id="close3" class="close-ncc">&times</div>
                             </div>
-                            <img id="small3" class="small-nd" src="{{asset('public/admin/uploads/nguoicaotuoi/anhtokhai/'.$elderly->anhToKhaiDeNghiTroGiup)}}" />
+                            <img id="small3" class="small-nd" src="{{asset('public/storage/'.$elderly->anhToKhaiDeNghiTroGiup)}}" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -121,10 +121,10 @@
                         <div class="col-md-9">
                             <input name="anhSoYeuLyLich" class="form-control" value="{{$elderly->anhSoYeuLyLich}}" type="file">
                             <div id="large4" style="display: none;" class="cover-image-ncc">
-                                <img src="{{asset('public/admin/uploads/nguoicaotuoi/anhsoyeulylich/'.$elderly->anhSoYeuLyLich)}}" alt="">
+                                <img src="{{asset('public/storage/'.$elderly->anhSoYeuLyLich)}}" alt="">
                                 <div id="close4" class="close-ncc">&times</div>
                             </div>
-                            <img id="small4" class="small-nd" src="{{asset('public/admin/uploads/nguoicaotuoi/anhsoyeulylich/'.$elderly->anhSoYeuLyLich)}}" />
+                            <img id="small4" class="small-nd" src="{{asset('public/storage/'.$elderly->anhSoYeuLyLich)}}" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -133,10 +133,10 @@
                             <input name="anhGiayChungNhanHIV" class="form-control" value="{{$elderly->anhGiayChungNhanHIV}}" type="file">
                             @if($elderly->anhGiayChungNhanHIV)
                                 <div id="large5" style="display: none;" class="cover-image-ncc">
-                                    <img src="{{asset('public/admin/uploads/nguoicaotuoi/anhgiaychungnhan/'.$elderly->anhGiayChungNhanHIV)}}" alt="">
+                                    <img src="{{asset('public/storage/'.$elderly->anhGiayChungNhanHIV)}}" alt="">
                                     <div id="close5" class="close-ncc">&times</div>
                                 </div>
-                                <img id="small5" class="small-nd" src="{{asset('public/admin/uploads/nguoicaotuoi/anhgiaychungnhan/'.$elderly->anhGiayChungNhanHIV)}}" />
+                                <img id="small5" class="small-nd" src="{{asset('public/storage/'.$elderly->anhGiayChungNhanHIV)}}" />
                             @else
                                 <p></p>
                             @endif

@@ -1,14 +1,20 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\CoSoVatChatController;
 use App\Http\Controllers\DangKyThamQuanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HoSoNguoiCaoTuoiController;
+use App\Http\Controllers\LienKetController;
+use App\Http\Controllers\NguoiThanController;
 use App\Http\Controllers\NhaCungCapController;
 use App\Http\Controllers\NhanVienController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ThongBaoController;
+use App\Http\Controllers\ThongKeController;
+use App\Http\Controllers\ThuocController;
 use App\Http\Controllers\UserController;
 use App\Models\HoSoNguoiCaoTuoi;
 
@@ -24,7 +30,51 @@ use App\Models\HoSoNguoiCaoTuoi;
 */
 
 // ===================Client=============================
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+// --- Xem thông tin chung ------
+Route::get('/central-information', [HomeController::class, 'central_information'])->name('central.information');
+// --- Thủ tục đăng ký ----
+Route::get('/registration-procedure', [HomeController::class, 'registration_procedure'])->name('registration.procedure');
+// --- Đăng ký tài khoản ----
+// Nhập thông tin chung 
+Route::post('/register-client', [HomeController::class, 'register_client'])->name('register.client');
+// Nhập thông tin tài khoản 
+Route::post('/account-client', [HomeController::class, 'account_client'])->name('account.client');
+// --- Đăng ký tham quan trung tâm ------
+// Giao diện đăng ký
+Route::get('/register-to-visit', [DangKyThamQuanController::class, 'register_to_visit'])->name('register.visit');
+// Lưu thông tin đăng ký tham quan trung tâm
+Route::post('/save-register-to-visit', [DangKyThamQuanController::class, 'save_register_to_visit'])->name('registerVisit.save');
+// --- Đăng nhập ----
+Route::post('/login-client', [HomeController::class, 'login_client'])->name('login.client');
+// --- Đăng xuất ------
+Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+
+// --- Hiển thị nội dung bên trái của nôi dung chính, danh sách thông báo
+// Hiển thị chi tiết bài đăng
+Route::get('/detail-posts/{id}', [HomeController::class, 'detail_posts'])->name('detail.posts');
+// Hiển thị chi tiết thông báo
+Route::get('/detail-notification/{id}', [HomeController::class, 'detail_notification'])->name('detail.notification');
+
+Route::middleware('nguoithan')->prefix('nguoithan')->group(function () {
+
+    // Danh sách người cao tuổi
+    Route::get('/list-elderly', [NguoiThanController::class, 'list_elderly'])->name('list_elderly.client');
+    // Đăng ký hồ sơ mới
+    Route::post('/register-elderly', [NguoiThanController::class, 'register_elderly'])->name('register.elderly');
+    // Lọc loại hồ sơ
+    Route::get('/filter-elderly', [NguoiThanController::class, 'filter_elderly'])->name('filter.elderly');
+    // Xem chi tiết hồ sơ người cao tuổi
+    Route::get('/detail-elderly/{id}', [NguoiThanController::class, 'detail_elderly'])->name('detail.elderly');
+    // Xem tính hình sức khoẻ
+    // + Tìm kiếm tình hình sức khoẻ theo ngày
+    Route::get('/search-health-situation/{id}', [NguoiThanController::class, 'search_health_situation'])->name('search.health_situation');
+    // Xem đơn thuốc
+    // Route::get('/prescription-elderly/{id}', [NguoiThanController::class, 'prescription_elderly'])->name('prescription.elderly');
+    // In đơn thuốc
+    Route::get('prescription-pdf/{id}', [NguoiThanController::class, 'prescription_pdf'])->name('prescription.pdf');
+            
+});
 
 
 
@@ -65,6 +115,8 @@ Route::middleware('admin')->prefix('admin')->group(function () {
             Route::post('/save-registerToVisit', [DangKyThamQuanController::class, 'save_registerToVisit'])->name('registerToVisit.save');
             // Xem chi tiết đơn đăng ký tham quan trung tâm
             Route::get('/detail-registerToVisit/{id}', [DangKyThamQuanController::class, 'detail_registerToVisit'])->name('registerToVisit.detail');
+            // Xem chi tiết với Ajax
+            Route::get('/detail-registerToVisit-ajax/{id}', [DangKyThamQuanController::class, 'detail_registerToVisit_ajax'])->name('registerToVisitajax.detail');
             Route::post('/update-registerToVisit/{id}', [DangKyThamQuanController::class, 'update_registerToVisit'])->name('registerToVisit.update');
             // Xoá đăng ký tham quan trung tâm
             Route::delete('/delete-registerToVisit/{id}', [DangKyThamQuanController::class, 'delete_registerToVisit'])->name('registerToVisit.delete');
@@ -170,6 +222,61 @@ Route::middleware('admin')->prefix('admin')->group(function () {
             // Khởi động nhà cung cấp
             Route::get('/active-supplier/{id}', [NhaCungCapController::class, 'active_supplier'])->name('supplier.active');
         });
+
+        // --------------------- Quản lý bài viết ---------------------------
+        Route::prefix('posts')->group(function(){
+            // Danh sách 
+            Route::get('/all-posts', [BaiVietController::class, 'all_posts'])->name('posts.all');
+            // Lưu bài viết mới
+            Route::post('/save-posts', [BaiVietController::class, 'save_posts'])->name('posts.save');
+            // Giao diện chỉnh sửa bài viết
+            Route::get('/edit-posts/{id}', [BaiVietController::class, 'edit_posts'])->name('posts.edit');
+            // Lưu thông tin chỉnh sửa
+            Route::post('/update-posts/{id}', [BaiVietController::class, 'update_posts'])->name('posts.update');
+            // Xoá bài viết
+            Route::delete('/delete-posts/{id}', [BaiVietController::class, 'delete_posts'])->name('posts.delete');
+            // Khoá bài viết
+            Route::get('/unactive-posts/{id}', [BaiVietController::class, 'unactive_posts'])->name('posts.unactive');
+            // Khởi động bài viết
+            Route::get('/active-posts/{id}', [BaiVietController::class, 'active_posts'])->name('posts.active');
+        });
+        // ---------------------- Quản lý Slide --------------------------
+        Route::prefix('slides')->group(function(){
+            // Danh sách 
+            Route::get('/all-slides', [SliderController::class, 'all_slides'])->name('slides.all');
+            // Lưu slide mới
+            Route::post('/save-slides', [SliderController::class, 'save_slides'])->name('slides.save');
+            // Giao diện chỉnh sửa slide
+            Route::get('/edit-slides/{id}', [SliderController::class, 'edit_slides'])->name('slides.edit');
+            // Lưu thông tin chỉnh sửa
+            Route::post('/update-slides/{id}', [SliderController::class, 'update_slides'])->name('slides.update');
+            // Xoá slide
+            Route::delete('/delete-slides/{id}', [SliderController::class, 'delete_slides'])->name('slides.delete');
+        });
+
+        // --------------------- Quản lý liên kết --------------------------
+        Route::prefix('links')->group(function(){
+            // Danh sách 
+            Route::get('/all-links', [LienKetController::class, 'all_links'])->name('links.all');
+            // Lưu nhà cung cấp mới
+            Route::post('/save-links', [LienKetController::class, 'save_links'])->name('links.save');
+            // Giao diện chỉnh sửa link
+            Route::get('/edit-links/{id}', [LienKetController::class, 'edit_links'])->name('links.edit');
+            // Lưu thông tin chỉnh sửa
+            Route::post('/update-links/{id}', [LienKetController::class, 'update_links'])->name('links.update');
+            // Xoá slide
+            Route::delete('/delete-links/{id}', [LienKetController::class, 'delete_links'])->name('links.delete');
+        });
+
+        // ---------------------- Thống kế ----------------------------
+        Route::prefix('statistical')->group(function(){
+            // Số lượng các danh mục
+            Route::get('/number-of-categories', [ThongKeController::class, 'number_of_categories'])->name('number.categories');
+            Route::get('/statistical-registerToVisit', [ThongKeController::class, 'statistical_registerToVisit'])->name('statistical.registerToVisit');
+            // Lọc theo ngày tháng năm lượt đăng ký
+            Route::get('/filter-registerToVisit', [ThongKeController::class, 'filter_registerToVisit'])->name('filter.registerToVisit');
+
+        });
     });
 
     // ====================== Nhân viên kho ==================================
@@ -192,6 +299,22 @@ Route::middleware('admin')->prefix('admin')->group(function () {
             // Mở hoạt động của cơ sở vật chất
             Route::get('/active-warehouse-infrastructure/{id}', [CoSoVatChatController::class, 'active_warehouse_infrastructure'])->name('active.warehouse.infrastructure');
         });
+
+        // ------------------- Quản lý thuốc -------------------
+        Route::prefix('medicine')->group(function(){
+            // ----------- Danh sách cơ sở vật chất ---------------
+            Route::get('/all-medicine', [ThuocController::class, 'all_medicine'])->name('medicine.all');
+            // ---- Xoá ------
+            Route::delete('/delete-medicine/{id}', [ThuocController::class, 'delete_medicine'])->name('medicine.delete');
+            // ---- Thêm thuốc mới --------
+            Route::get('/add-medicine', [ThuocController::class, 'add_medicine'])->name('medicine.add');
+            // Lưu thông tin thuốc mới
+            Route::post('/save-medicine', [ThuocController::class, 'save_medicine'])->name('medicine.save');
+            // ---- Chỉnh sửa thông tin thuốc --------
+            Route::get('/edit-medicine/{id}', [ThuocController::class, 'edit_medicine'])->name('medicine.edit');
+            // Lưu thông tin thuốc được cập nhật
+            Route::post('/update-medicine/{id}', [ThuocController::class, 'update_medicine'])->name('medicine.update');
+        });
     });
 
 
@@ -212,6 +335,37 @@ Route::middleware('admin')->prefix('admin')->group(function () {
             Route::post('/update-health-elderly/{id}', [HoSoNguoiCaoTuoiController::class, 'update_health_elderly'])->name('health.elderly.update');
             // --- Xoá tình hình sức khoẻ cho người cao tuổi được chọn ---------
             Route::delete('/delete-health-elderly/{id}', [HoSoNguoiCaoTuoiController::class, 'delete_health_elderly'])->name('health.elderly.delete');
+        });
+
+        // Cập nhật bệnh án người cao tuổi
+        Route::prefix('medical-records-elderly')->group(function(){
+
+            //==== Cập nhật bệnh án ==========
+            // --- Danh sách người cao tuổi -------
+            Route::get('/all-medical-records', [HoSoNguoiCaoTuoiController::class, 'all_medical_records'])->name('medical.records.all');
+            // --- Thêm bệnh án người cao tuổi ------
+            Route::get('/add-medical-records/{id}', [HoSoNguoiCaoTuoiController::class, 'add_medical_records'])->name('medical.records.add');
+            // --- Thêm bệnh án mới -------
+            Route::post('/save-medical-records/{id}', [HoSoNguoiCaoTuoiController::class, 'save_medical_records'])->name('medical.records.save');
+            // --- Danh sách bệnh án từng người cao tuổi ----------
+            Route::get('/all-medical-records-personal/{id}', [HoSoNguoiCaoTuoiController::class, 'all_medical_records_personal'])->name('medical.records_personal.all');
+            // --- Chỉnh sửa danh bạ -------
+            Route::get('/edit-medical-records-personal/{id}', [HoSoNguoiCaoTuoiController::class, 'edit_medical_records_personal'])->name('medical.records_personal.edit');
+            // --- Lưu thông tin danh bạ được chỉnh sửa ------
+            Route::post('/update-medical-records-personal/{id}', [HoSoNguoiCaoTuoiController::class, 'update_medical_records_personal'])->name('medical.records_personal.update');
+
+            // ==== Cập nhật thuốc điều trị ======
+            // --- Thêm thuốc điều trị -------
+            Route::get('/add-medicine-list/{id}', [HoSoNguoiCaoTuoiController::class, 'add_medicine_list'])->name('medicine.list.add');
+            // --- Lưu thông tin thuốc điều trị ------
+            Route::post('/save-medicine-list/{id}', [HoSoNguoiCaoTuoiController::class, 'save_medicine_list'])->name('medicine.list.save');
+            // Cập nhật số lượng thuốc điều trị
+            // Route::post('/update-medicine-list', [HoSoNguoiCaoTuoiController::class, 'update_medicine_list'])->name('medicine.list.update');
+            // Xoá
+            Route::delete('/delete-medicine-list/{id}', [HoSoNguoiCaoTuoiController::class, 'delete_medicine_list'])->name('medicine_list.delete');
+            // In đơn thuốc
+            Route::get('medicine-list-pdf/{id}', [HoSoNguoiCaoTuoiController::class, 'medicine_list_pdf'])->name('medicine_list.pdf');
+            
         });
 
 

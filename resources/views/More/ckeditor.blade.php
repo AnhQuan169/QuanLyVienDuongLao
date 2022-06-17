@@ -13,6 +13,9 @@
 	// Thêm ghi chú
 	CKEDITOR.replace('ckeditor3');
 
+	// ======= Bài viết =========
+	// Thêm nội dung bài viết
+	CKEDITOR.replace('ckeditor4');
 
 	// // Chỉnh sửa mô tả sản phẩm
 	// CKEDITOR.replace('ckeditor3');

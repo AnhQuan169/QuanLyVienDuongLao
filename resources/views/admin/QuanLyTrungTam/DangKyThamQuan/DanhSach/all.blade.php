@@ -60,7 +60,12 @@
                                         <td>{{date('H:i A', strtotime($dky->thoigianTQ))}}</td>
                                         <td>{{$dky->hoTen}}</td>
                                         <td class="text-center">
-                                            <a href="{{route('registerToVisit.detail',$dky->id_dangky)}}" type="button" class="btn btn-info edit-tb" style="border-radius: 7px"><i class="fa fa fa-info-circle"></i></a>
+                                            <a href="{{route('registerToVisit.detail',$dky->id_dangky)}}" type="button" class="btn btn-info edit-tb" style="border-radius: 7px">
+                                                <i class="fa fa fa-pen-square"></i>
+                                            </a>
+                                            <button value="{{$dky->id_dangky}}"  class="btn btn-info" id="btn-detail-visit" style="border-radius: 7px">
+                                                <i class="fa fa fa-info-circle"></i>
+                                            </button>
                                             <a href=""  type="button" data-id="{{$dky->id_dangky}}" class="btn btn-danger delete-dktq" style="border-radius: 7px"><i class="fa fa-times"></i></a>
                                         </td>
                                     </tr>
@@ -69,14 +74,10 @@
                                 <td colspan="9" style="text-align: center">Không có đơn đăng ký nào được duyệt</td>
                             @endif
                         </tbody>
-                    </table>  
+                    </table>
                     
-                    {{-- <div class="col-sm-12 text-right text-center-xs mt-2">
-                        <div class="pagination d-flex justify-content-center">
-                            {!!$dangkythamquan->links('paginationlinks')!!}
-                        </div>
-                    </div> --}}
                 </div>
+                @include('admin.QuanLyTrungTam.DangKyThamQuan.DanhSach.Modal.detail')
             </div>
         </div>
     </div>
@@ -85,6 +86,7 @@
 @endsection
 
 @section('ajax_js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
 
@@ -114,7 +116,6 @@
                         });
                 });
             });
-
 
             var table = $('#example4').DataTable({
                 "columnDefs": [
@@ -150,6 +151,31 @@
                 }
             } );
             
+            jQuery('body').on('click', '#btn-detail-visit', function () {
+                var id_dangky = $(this).val();
+                $.get('detail-registerToVisit-ajax/'+id_dangky, function (data) {
+
+                    var format_one = moment(data.ngayThamQuanDK).format('DD-MM-YYYY');
+                    $("#dktq-ngayThamQuanDK").text(format_one); 
+
+                    var format_two = moment(data.ngayDangKyDK).format('DD-MM-YYYY');
+                    $("#dktq-ngayDangKyDK").text(format_two); 
+
+                    var time = data.thoigianTQ;
+                    var formatted = moment(time, "HH:mm:ss").format("hh:mm A");
+                    $('#dktq-thoigianTQ').text(formatted);
+
+                    $('#dktq-id_dangky').text(data.id_dangky);
+                    $('#dktq-nguoiDaiDienDK').text(data.nguoiDaiDienDK);
+                    $('#dktq-soLuongDK').text(data.soLuongDK);
+                    $('#dktq-emailDK').text(data.emailDK);
+                    $('#dktq-soDienThoaiDK').text(data.soDienThoaiDK);
+                    $('#dktq-ghiChuDK').text(data.ghiChuDK);
+                    $('#RegisterToVisitModal').modal('show');
+                })
+            });
+            
+
         });
     </script>
 @endsection

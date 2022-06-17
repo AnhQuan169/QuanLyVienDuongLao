@@ -19,7 +19,7 @@
            @foreach($element as $page=>$url)
 
             @if($page == $paginator->currentPage())
-                <li class="page-item active"><a class="page-link"><span>{{ $page }}</span></a></li>
+                <li class="page-item active"><a class="page-link"><span style="color: #fff;">{{ $page }}</span></a></li>
             @else
                   <li class="page-item"><a href="{{ $url }}" class="page-link">{{ $page }}</a></li>
             @endif

@@ -62,7 +62,7 @@
                                 @foreach ($employee as $key => $val )
                                     <tr>
                                         <td>{{$val->id}}</td>
-                                        <td><img src="{{asset('public/admin/uploads/users/'.$val->anhDaiDien)}}" width="150px" /></td>
+                                        <td><img src="{{asset('public/storage/'.$val->anhDaiDien)}}" width="150px" /></td>
                                         <td>{{$val->hoTen}}</td>
                                         <td>{{$val->email}}</td>
                                         <td>{{$val->CCCD}}</td>

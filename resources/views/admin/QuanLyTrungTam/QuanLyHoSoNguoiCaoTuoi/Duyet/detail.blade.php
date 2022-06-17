@@ -34,10 +34,10 @@
                         <label class="col-md-3 control-label " for="val-username">Ảnh đại diện: </label>
                         <div class="col-md-9">
                             <div id="large6" style="display: none;" class="cover-image-ncc">
-                                <img src="{{asset('public/admin/uploads/nguoicaotuoi/anhdaidien/'.$user->anhDaiDienNCC)}}" alt="">
+                                <img src="{{asset('public/storage/'.$user->anhDaiDienNCC)}}" alt="">
                                 <div id="close6" class="close-ncc">&times</div>
                             </div>
-                            <img id="small6" class="small-nd" src="{{asset('public/admin/uploads/nguoicaotuoi/anhdaidien/'.$user->anhDaiDienNCC)}}" />
+                            <img id="small6" class="small-nd" src="{{asset('public/storage/'.$user->anhDaiDienNCC)}}" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -87,10 +87,10 @@
                         <label class="col-md-3 control-label " for="val-username">Ảnh đơn đăng ký của đối tượng hoặc người giám hộ (Theo mẫu): </label>
                         <div class="col-md-9">
                             <div id="large7" style="display: none;" class="cover-image-ncc">
-                                <img src="{{asset('public/admin/uploads/nguoicaotuoi/anhdondangky/'.$user->anhDon)}}" alt="">
+                                <img src="{{asset('public/storage/'.$user->anhDon)}}" alt="">
                                 <div id="close7" class="close-ncc">&times</div>
                             </div>
-                            <img id="small7" class="small-nd" src="{{asset('public/admin/uploads/nguoicaotuoi/anhdondangky/'.$user->anhDon)}}" />
+                            <img id="small7" class="small-nd" src="{{asset('public/storage/'.$user->anhDon)}}" />
                         </div>
                     </div>
 
@@ -98,10 +98,10 @@
                         <label class="col-md-3 control-label " for="val-username">Ảnh tờ khai đề nghị trợ giúp (Có công chứng, theo mẫu): </label>
                         <div class="col-md-9">
                             <div id="large8" style="display: none;" class="cover-image-ncc">
-                                <img src="{{asset('public/admin/uploads/nguoicaotuoi/anhtokhai/'.$user->anhToKhaiDeNghiTroGiup)}}" alt="">
+                                <img src="{{asset('public/storage/'.$user->anhToKhaiDeNghiTroGiup)}}" alt="">
                                 <div id="close8" class="close-ncc">&times</div>
                             </div>
-                            <img id="small8" class="small-nd" src="{{asset('public/admin/uploads/nguoicaotuoi/anhtokhai/'.$user->anhToKhaiDeNghiTroGiup)}}" />
+                            <img id="small8" class="small-nd" src="{{asset('public/storage/'.$user->anhToKhaiDeNghiTroGiup)}}" />
                         </div>
                     </div>
                     
@@ -109,10 +109,10 @@
                         <label class="col-md-3 control-label " for="val-username">Ảnh sơ yếu lý lịch (Có công chứng, theo mẫu): </label>
                         <div class="col-md-9">
                             <div id="large9" style="display: none;" class="cover-image-ncc">
-                                <img src="{{asset('public/admin/uploads/nguoicaotuoi/anhsoyeulylich/'.$user->anhSoYeuLyLich)}}" alt="">
+                                <img src="{{asset('public/storage/'.$user->anhSoYeuLyLich)}}" alt="">
                                 <div id="close9" class="close-ncc">&times</div>
                             </div>
-                            <img id="small9" class="small-nd" src="{{asset('public/admin/uploads/nguoicaotuoi/anhsoyeulylich/'.$user->anhSoYeuLyLich)}}" />
+                            <img id="small9" class="small-nd" src="{{asset('public/storage/'.$user->anhSoYeuLyLich)}}" />
                         </div>
                     </div>
 
@@ -121,10 +121,10 @@
                         <div class="col-md-9">
                             @if($user->anhGiayChungNhanHIV)
                                 <div id="large10" style="display: none;" class="cover-image-ncc">
-                                    <img src="{{asset('public/admin/uploads/nguoicaotuoi/anhgiaychungnhan/'.$user->anhGiayChungNhanHIV)}}" alt="">
+                                    <img src="{{asset('public/storage/'.$user->anhGiayChungNhanHIV)}}" alt="">
                                     <div id="close10" class="close-ncc">&times</div>
                                 </div>
-                                <img id="small10" class="small-nd" src="{{asset('public/admin/uploads/nguoicaotuoi/anhgiaychungnhan/'.$user->anhGiayChungNhanHIV)}}" />
+                                <img id="small10" class="small-nd" src="{{asset('public/storage/'.$user->anhGiayChungNhanHIV)}}" />
                             @else
                                 <input name="diaChi" class="form-control maintb" type="text" value="Không có" disabled>
                             @endif

@@ -34,10 +34,11 @@
                         <label class="col-md-3 control-label " for="val-username">Ảnh đại diện: </label>
                         <div class="col-md-9">
                             <div id="large11" style="display: none;" class="cover-image-ncc">
-                                <img src="{{asset('public/admin/uploads/users/'.$user->anhDaiDien)}}" alt="">
+                                {{-- <img src="{{asset('public/admin/uploads/users/'.$user->anhDaiDien)}}" alt=""> --}}
+                                <img src="{{asset('public/storage/'.$user->anhDaiDien)}}" width="150px" />
                                 <div id="close11" class="close-ncc">&times</div>
                             </div>
-                            <img id="small11" class="small-nd" src="{{asset('public/admin/uploads/users/'.$user->anhDaiDien)}}" />
+                            <img id="small11" class="small-nd" src="{{asset('public/storage/'.$user->anhDaiDien)}}" />
                         </div>
                     </div>
                     <div class="form-group">

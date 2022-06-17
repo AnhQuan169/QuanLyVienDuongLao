@@ -98,7 +98,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label " for="val-username">nhà cung cấp: <span class="text-danger">*</span></label>
+                        <label class="col-md-3 control-label " for="val-username">Nhà cung cấp: <span class="text-danger">*</span></label>
                         <div class="col-md-9" style="display: flex">
                             <select class="form-control" id="val-skill" name="id_nhacungcap">
                                 @foreach ($nhacungcap as $key => $val )

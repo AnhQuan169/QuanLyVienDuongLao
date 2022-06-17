@@ -29,7 +29,10 @@ class AdminController extends Controller
         $request->validate([
             'name' =>'required',
             'password' =>'required',
-        ]);
+        ],[
+            'name.required'=>'Vui lòng nhập tên tài khoản',
+            'password.required'=>'Vui lòng nhập mật khẩu'
+         ]);
 
         if(Auth::attempt(['name'=> $request->name, 'password' => $request->password])){
             $user = User::where('name',$request->name)->first();
@@ -37,15 +40,14 @@ class AdminController extends Controller
                 Auth::login($user);
                 return redirect()->route('dashboard');
             }else{
-                return redirect()->route('login_admin')->with('message','Tài khoản đang bị khoá');
+                return redirect()->back()->with('message','Tài khoản đang bị khoá');
             }
         }else{
-            return redirect()->route('login_admin')->with('message','Tên tài khoản hoặc mật khẩu không đúng');
+            return redirect()->back()->with('message','Tên tài khoản hoặc mật khẩu không đúng');
         }
     }
 
     public function logout_admin(){
-        // $this->AuthLogin();
         Auth::logout();
         return redirect()->route('login_admin')->with('message','Đăng xuất thành công');
     }
@@ -90,16 +92,9 @@ class AdminController extends Controller
                         Toastr::warning('Số điện thoại này đã tồn tại', 'Thất bại',);
                         return redirect()->back();
                     }else{
-                        $get_image = $request->file('anhDaiDien');
-                        if($get_image){
-                            $get_name_image = $get_image->getClientOriginalName();
-                            $name_image = current(explode('.',$get_name_image));
-                            $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-                            $get_image->move('public/admin/uploads/users',$new_image);
-                            $data['anhDaiDien'] = $new_image;
-                            User::where('id',$id)->update($data);
-                            Toastr::success('Cập nhật thông tin người dùng thành công', 'Thành công',);
-                            return redirect()->back();
+                        if($request->hasFile('anhDaiDien')) {
+                            $path = $request->file('anhDaiDien')->store('users', 'public');
+                            $data['anhDaiDien'] = $path;
                         }
                         User::where('id',$id)->update($data);
                         Toastr::success('Cập nhật thông tin người dùng thành công', 'Thành công',);

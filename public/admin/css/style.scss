@@ -1,6 +1,6 @@
 
 .text-line-long{
-    width: 200px;
+    width: 300px;
     p{
         overflow: hidden;
         display: -webkit-box;
@@ -19,7 +19,7 @@
     animation: zoom 0.6s;
 
     img{
-        width: 97%;
+        width: 50%;
         height: auto;
         object-fit: cover;
     }
@@ -50,6 +50,17 @@
         transform: scale(1);
     }
 }
+
+// ===== Admin: Đăng ký tham quan trung tâm =====
+// .register-to-visit-detail{
+//     .modal-content{
+
+//         .modal-body{
+//             .row{
+//             }
+//         }
+//     }
+// }
 
 
 

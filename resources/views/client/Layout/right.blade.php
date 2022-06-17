@@ -1,19 +1,16 @@
-</div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                <div class="main-left">
-                    <div class="card">
-                        <div class="card-header">
-                            Danh mục dịch vụ
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+<div class="main-right">
+    <div class="card shadow-sm p-3 mb-5 bg-body rounded">
+        <div class="card-header mb-2 rounded text-center">
+            Liên kết
         </div>
+        <ul class="list-group list-group-flush">
+            @foreach ($lienket as $key => $val )
+                <li class="">
+                    <a href="{{$val->link_lienket}}" target="_blank">
+                        <img class="shadow-sm mb-2 bg-body rounded" src="{{asset('public/storage/'.$val->hinhAnh_lienket)}}" width="100%" alt="">
+                    </a>
+                </li>
+            @endforeach
+        </ul>
     </div>
 </div>

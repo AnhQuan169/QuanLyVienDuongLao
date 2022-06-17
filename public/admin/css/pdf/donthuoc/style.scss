@@ -1,0 +1,44 @@
+body{
+    font-size: 15px;
+    line-height: 0.5 rem;
+    box-sizing: border-box;
+    font-family: DejaVu Sans, sans-serif;
+}
+
+/* Thông tin bệnh viện */
+.hospital-information{
+  font-style: bold;
+}
+
+.title-prescription{
+  font-size: 23px;
+  font-style: bold;
+  text-align: center;
+  margin: 50px 0;
+  color: #134786;
+}
+
+.elderly-information{
+    td{
+        padding: 10px 30px 10px 0;
+    }
+} 
+
+.list-medicine{
+    margin-top: 20px;
+    margin-bottom: 50px;
+    td{
+        padding: 15px 0 ;
+    }
+
+    p{
+        margin-left: 100px;
+        margin-top: 5px;
+    }
+}
+
+.other-information{
+    td{
+        padding: 10px 20px 5px 0;
+    }
+}
