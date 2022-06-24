@@ -38,7 +38,7 @@
                             <tr>
                                 <th>Mã thông báo</th>
                                 <th>Chủ đề</th>
-                                <th>Nội dung</th>
+                                {{-- <th>Nội dung</th> --}}
                                 <th>Thời gian đăng</th>
                                 <th>Người đăng</th>
                                 <th>Thao tác</th>
@@ -48,8 +48,8 @@
                             @foreach ($thongbao as $key => $tbao )
                                 <tr>
                                     <td>{{$tbao->id_thongbao}}</td>
-                                    <td>{{$tbao->chuDe}}</td>
-                                    <td class="text-line-long">{!!$tbao->noiDung!!}</td>
+                                    <td class="text-line-long">{{$tbao->chuDe}}</td>
+                                    {{-- <td class="text-line-long" style="width: 200px">{!!$tbao->noiDung!!}</td> --}}
                                     <td>{{date('d-m-Y', strtotime($tbao->thoiGianDang))}}</td>
                                     <td>{{$tbao->hoTen}}</td>
                                     <td class="text-center" style="width: 100px">

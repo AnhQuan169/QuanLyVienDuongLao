@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label " for="val-username">Số lượng đang sử dụng: <span class="text-danger">*</span></label>
+                    <label class="col-md-3 control-label " for="val-username">Số lượng nhập: <span class="text-danger">*</span></label>
                     <div class="col-md-9">
                         <input name="soLuongNhap" value="{{old('soLuongNhap')}}" max="200" min="0" class="form-control" type="number" placeholder="Nhập số lượng nhập">
                         <span style="color: red;">

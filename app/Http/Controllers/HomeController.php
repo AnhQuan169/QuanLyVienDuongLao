@@ -158,7 +158,7 @@ class HomeController extends Controller
                 $data['gioiTinh'] = $val['gioiTinh'];
                 $data['ngaySinh'] = $val['ngaySinh'];
                 $data['anhDaiDien'] = $val['anhDaiDien'];
-                $data['CCCD'] = $val['email'];
+                $data['CCCD'] = $val['CCCD'];
                 $data['soDienThoai'] = $val['soDienThoai'];
                 $data['loaiTaiKhoan'] = 3;
                 $data['diaChi'] = $val['diaChi'];
@@ -171,7 +171,7 @@ class HomeController extends Controller
             return response()->json([
                 'status' => 200,
                 'message' => "Thêm thành công",
-                'success'=>"Đăng ký tài khoản thành công"
+                'success'=>"Đăng ký tài khoản thành công. Trung tâm sẽ xem xét và phản hồi sớm nhất."
             ]);
             
         }

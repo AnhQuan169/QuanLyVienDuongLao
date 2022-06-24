@@ -40,7 +40,7 @@
                                 <th>Ngày sinh</th>
                                 <th>Số điện thoại</th>
                                 <th>CCCD</th>
-                                <th>Địa chỉ</th>
+                                {{-- <th>Địa chỉ</th> --}}
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
@@ -55,7 +55,7 @@
                                         <td>{{date('d-m-Y', strtotime($usernd->ngaySinh))}}</td>
                                         <td>{{$usernd->soDienThoai}}</td>
                                         <td>{{$usernd->CCCD}}</td>
-                                        <td>{{$usernd->diaChi}}</td>
+                                        {{-- <td>{{$usernd->diaChi}}</td> --}}
                                         <td class="text-center">
                                             <a href="{{route('browseuser.detail',$usernd->id)}}" type="button" class="btn btn-info edit-user" style="border-radius: 7px;margin-bottom: 5px;"><i class="fa fa fa-check-circle"></i></a>
                                             <a href=""  type="button" data-id="{{$usernd->id}}" class="btn btn-danger delete-user" style="border-radius: 7px"><i class="fa fa-times"></i></a>

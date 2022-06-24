@@ -38,8 +38,8 @@
                                 <th>Mã người dùng</th>
                                 <th>Ảnh đại diện</th>
                                 <th>Họ tên</th>
-                                <th>Email</th>
-                                <th>Ngày sinh</th>
+                                <th style="width: 100px">Email</th>
+                                <th style="width: 100px">Ngày sinh</th>
                                 <th>Số điện thoại</th>
                                 <th>Người duyệt</th>
                                 <th>Tình trạng</th>
@@ -51,7 +51,7 @@
                                 @foreach ($user as $key => $usernd )
                                     <tr>
                                         <td>{{$usernd->id}}</td>
-                                        <td><img src="{{asset('public/storage/'.$usernd->anhDaiDien)}}" width="150px" /></td>
+                                        <td><img src="{{asset('public/storage/'.$usernd->anhDaiDien)}}" width="100px" /></td>
                                         <td>{{$usernd->hoTen}}</td>
                                         <td>{{$usernd->email}}</td>
                                         <td>{{date('d-m-Y', strtotime($usernd->ngaySinh))}}</td>

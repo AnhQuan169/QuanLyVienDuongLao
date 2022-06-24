@@ -83,7 +83,7 @@ class UserController extends Controller
                 $data['anhDaiDien'] = $path;
             }
             User::insert($data);
-            Toastr::success('Đăng ký tài khoản thành công', 'Thành công',);
+            Toastr::success('Đăng ký tài khoản thành công.', 'Thành công',);
             return redirect()->back();
         }else{
             Toastr::warning('Mật khẩu nhập lại không chính xác', 'Thất bại',);

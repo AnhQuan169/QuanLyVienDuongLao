@@ -36,8 +36,8 @@
                     </div>
                     <div class="form-group">
                         <label for="">Ảnh đại diện: <span class="text-danger">*</span></label>
-                        <input class="form-control img-preview-add" type="file" name="anhDaiDienNCC" style="margin: 5px 0">
-                        <img src="https://tintuckhanhhoa.com/uploads/no_image_available.jpg" alt="" id="previewImgadd" width="20%">
+                        <input class="form-control img-preview-add-ncc" type="file" name="anhDaiDienNCC" style="margin: 5px 0">
+                        <img src="https://tintuckhanhhoa.com/uploads/no_image_available.jpg" alt="" id="previewImgaddncc" width="20%">
                         <span class="text text-danger error-text anhDaiDienNCC_error"></span>
                     </div>
                     <div class="form-group">
@@ -54,6 +54,11 @@
                         <label for="">Địa chỉ: <span class="text-danger">*</span></label>
                         <input value="{{old('diaChiNCC')}}" class="form-control" type="text" placeholder="Nhập địa chỉ" name="diaChiNCC" style="margin: 5px 0">
                         <span class="text text-danger error-text diaChiNCC_error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Ngày vào: <span class="text-danger">*</span></label>
+                        <input value="{{old('ngayVao')}}" class="form-control" type="date" name="ngayVao" style="margin: 5px 0">
+                        <span class="text text-danger error-text ngayVao_error"></span>
                     </div>
                     <div class="form-group">
                         <label for="">Ảnh đơn đăng ký của đối tượng hoặc người giám hộ: <span class="text-danger">*</span></label>

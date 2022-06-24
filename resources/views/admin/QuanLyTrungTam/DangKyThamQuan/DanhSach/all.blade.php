@@ -122,7 +122,7 @@
                     { "visible": false, "targets": 2 }
                 ],
                 "order": [[ 2, 'asc' ]],
-                "displayLength": 25,
+                "displayLength": 10,
                 "drawCallback": function ( settings ) {
                     var api = this.api();
                     var rows = api.rows( {page:'current'} ).nodes();

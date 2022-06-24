@@ -39,7 +39,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
                                         <div class="card shadow p-3 mb-3 bg-body rounded">
                                             <a class="card-a" href="{{route('detail.elderly',$val->id_nguoicaotuoi)}}">
-                                                <img src="{{asset('public/storage/'.$val->anhDaiDienNCC)}}" class="card-img-top" alt="...">
+                                                <img src="{{asset('public/storage/'.$val->anhDaiDienNCC)}}" class="card-img-top" height="150px" alt="...">
                                                 <div class="card-body">
                                                     <p class="card-text">{{$val->hoTenNCC}}</p>
                                                     @if($val->tinhTrangNCC == 1)
@@ -87,10 +87,12 @@
                         @else
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                                    <div class="elderly-none card shadow p-3 mb-3 bg-body rounded">
-                                        <i class="fa-solid fa-plus"></i>
-                                        <span>Không có hồ sơ nào</span>
-                                    </div>
+                                    <a href="">
+                                        <div class="elderly-none card shadow p-3 mb-3 bg-body rounded">
+                                            <i class="fa-solid fa-plus"></i>
+                                            <span>Không có hồ sơ nào</span>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         @endif
@@ -153,6 +155,17 @@
             
         })
 
+        // Hiển thị hình ảnh người cao tuổi
+        $('#registerElderlyForm input[name="anhDaiDienNCC"]').on('change', function() {
+            var file = $('#registerElderlyForm').find('.img-preview-add-ncc').get(0).files[0];
+            if(file) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    $('#registerElderlyForm').find('#previewImgaddncc').attr('src', reader.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
 
     });
 </script>

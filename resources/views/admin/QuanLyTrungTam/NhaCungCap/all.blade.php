@@ -29,48 +29,50 @@
                     </div>
                 </div>
             </div>
-            <div class="table-responsive">
-                <table id="example" class="display table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Mã nhà cung cấp</th>
-                            <th>Tên nhà cung cấp</th>
-                            <th>Địa chỉ</th>
-                            <th>Email</th>
-                            <th>Số điện thoại</th>
-                            <th>Loại hàng hoá</th>
-                            <th>Tình trạng</th>
-                            <th>Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (count($nhacungcap) > 0)
-                            @foreach ($nhacungcap as $key => $ncc )
-                                <tr>
-                                    <td>{{$ncc->id_nhacungcap}}</td>
-                                    <td>{{$ncc->ten_ncc}}</td>
-                                    <td>{{$ncc->diaChi_ncc}}</td>
-                                    <td>{{$ncc->email_ncc}}</td>
-                                    <td>{{$ncc->soDienThoai_ncc}}</td>
-                                    <td>{{$ncc->ten_loaiHangHoa}}</td>
-                                    <td>
-                                        @if($ncc->tinhTrang_ncc == 1)
-                                            <a href="{{route('supplier.unactive',$ncc->id_nhacungcap)}}" type="button" class="btn btn-success edit-user" style="border-radius: 7px;"><i class="fa fa fa-unlock"></i> Hoạt động</a>
-                                        @else
-                                            <a href="{{route('supplier.active',$ncc->id_nhacungcap)}}" type="button" class="btn btn-danger edit-user" style="border-radius: 7px"><i class="fa fa fa-lock"></i> khoá</a>
-                                        @endif
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="{{route('supplier.edit',$ncc->id_nhacungcap)}}" type="button" class="btn btn-info edit-user" style="border-radius: 7px"><i class="fa fa fa-info-circle"></i></a>
-                                        <a href=""  type="button" data-id="{{$ncc->id_nhacungcap}}" class="btn btn-danger delete-supplier" style="border-radius: 7px"><i class="fa fa-times"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @else
-                            <td colspan="9" style="text-align: center">Không có nhà cung cấp nào</td>
-                        @endif
-                    </tbody>
-                </table>  
+            <div id="table_data">
+                <div class="table-responsive">
+                    <table id="example" class="display table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Mã nhà cung cấp</th>
+                                <th>Tên nhà cung cấp</th>
+                                <th>Địa chỉ</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Loại hàng hoá</th>
+                                <th>Tình trạng</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (count($nhacungcap) > 0)
+                                @foreach ($nhacungcap as $key => $ncc )
+                                    <tr>
+                                        <td>{{$ncc->id_nhacungcap}}</td>
+                                        <td>{{$ncc->ten_ncc}}</td>
+                                        <td>{{$ncc->diaChi_ncc}}</td>
+                                        <td>{{$ncc->email_ncc}}</td>
+                                        <td>{{$ncc->soDienThoai_ncc}}</td>
+                                        <td>{{$ncc->ten_loaiHangHoa}}</td>
+                                        <td>
+                                            @if($ncc->tinhTrang_ncc == 1)
+                                                <a href="{{route('supplier.unactive',$ncc->id_nhacungcap)}}" type="button" class="btn btn-success edit-user" style="border-radius: 7px;"><i class="fa fa fa-unlock"></i> Hoạt động</a>
+                                            @else
+                                                <a href="{{route('supplier.active',$ncc->id_nhacungcap)}}" type="button" class="btn btn-danger edit-user" style="border-radius: 7px"><i class="fa fa fa-lock"></i> khoá</a>
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{route('supplier.edit',$ncc->id_nhacungcap)}}" type="button" class="btn btn-info edit-user" style="border-radius: 7px"><i class="fa fa fa-info-circle"></i></a>
+                                            <a href=""  type="button" data-id="{{$ncc->id_nhacungcap}}" class="btn btn-danger delete-supplier" style="border-radius: 7px"><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <td colspan="9" style="text-align: center">Không có nhà cung cấp nào</td>
+                            @endif
+                        </tbody>
+                    </table>  
+                </div>
             </div>
         </div>
     </div>

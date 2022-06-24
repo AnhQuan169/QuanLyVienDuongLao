@@ -29,6 +29,7 @@ class NguoiThanController extends Controller
             'CCCD_NCC'=>'required',
             'soDienThoaiNCC'=>'required',
             'diaChiNCC'=>'required',
+            'ngayVao'=>'required',
             'anhDon'=>'required',
             'anhToKhaiDeNghiTroGiup'=>'required',
             'anhSoYeuLyLich'=>'required'
@@ -41,6 +42,7 @@ class NguoiThanController extends Controller
             'CCCD_NCC.required'=>'Vui lòng nhập số căn cước công dân',
             'soDienThoaiNCC.required'=>'Vui lòng nhập số điện thoại',
             'diaChiNCC.required'=>'Vui lòng nhập địa chỉ',
+            'ngayVao.required'=>'Vui lòng chọn ngày vào',
             'anhDon.required'=>'Vui lòng chọn ảnh đơn đăng ký',
             'anhToKhaiDeNghiTroGiup.required'=>'Vui lòng chọn ảnh tờ khai đề nghị trợ giúp',
             'anhSoYeuLyLich.required'=>'Vui lòng chọn ảnh sơ yếu lý lịch'
@@ -62,7 +64,7 @@ class NguoiThanController extends Controller
             $data['diaChiNCC'] = $request->diaChiNCC;
             $data['phong'] = null;
             $data['giuong'] = null;
-            $data['ngayVao'] = null;
+            $data['ngayVao'] = $request->ngayVao;
             $data['ngayDangKyNCC'] = now();
             $data['tinhTrangNCC'] = 0;
             $data['ngayDuyetNCC'] = null;

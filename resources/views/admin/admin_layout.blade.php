@@ -125,12 +125,12 @@
                 <li>
                     <a href="{{route('links.all')}}"><i class="icon-layers"></i><span>Quản lý liên kết</span></a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href=""><i class="icon-layers"></i><span>Duyệt đề xuất báo cáo kho</span></a>
                 </li>
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Cập nhật lịch trực của nhân viên</span></a>
-                </li>
+                </li> --}}
                 <li class="menu-list">
                     <a href=""><i class="icon-layers"></i><span>Thống kê</span></a>
                     <ul class="sub-menu-list">
@@ -154,9 +154,9 @@
                         <li><a href="{{route('warehouse.infrastructure.all')}}">Kho lưu trữ</a></li>
                     </ul>
                 </li>
-                <li>
+                {{-- <li>
                     <a href=""><i class="icon-layers"></i><span>Đề xuất báo cáo kho</span></a>
-                </li>
+                </li> --}}
                 @endhasrole
                 @hasrole('2')
                 <li>
@@ -165,9 +165,9 @@
                 <li>
                     <a href="{{route('medical.records.all')}}"><i class="icon-layers"></i><span>Cập nhật bệnh án người cao tuổi</span></a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href=""><i class="icon-layers"></i><span>Cập nhật tình trạng vật tư y tế đang dùng</span></a>
-                </li>
+                </li> --}}
                 
                 @endhasrole
                 

@@ -50,7 +50,7 @@
                                 @foreach ($baiviet as $key => $bv )
                                     <tr>
                                         <td>{{$bv->id_baiViet}}</td>
-                                        <td><img src="{{asset('public/storage/'.$bv->hinhAnh)}}" width="150px" /></td>
+                                        <td><img src="{{asset('public/storage/'.$bv->hinhAnh)}}" width="150px"  height="100px"/></td>
                                         <td class="text-line-long">{{$bv->tenBaiViet}}</td>
                                         <td>{{$bv->tacGia}}</td>
                                         <td>{{date('d-m-Y', strtotime($bv->ngayDang))}}</td>

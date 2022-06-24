@@ -27,12 +27,12 @@ li {
     padding: 0;
     list-style: none;
 }
-// .menu-header-scroll{
-//     position: fixed;
-//     top: 0;
-//     width: 100%;
-//     z-index: 10;
-// }
+.menu-header-scroll{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
 
 header {
     .logo-header{
@@ -222,7 +222,7 @@ header {
                             &:hover{
                                 opacity: 5;
                                 width: calc(100% + 40px);
-                                height: calc(100% + 40px);
+                                height: calc(100% + 80px);
                                 left: -20px;
                                 top: -20px;
                                 transform: scale(1.2);
@@ -492,7 +492,7 @@ header {
                     transition: transform ease-in 0.5s;
 
                     &:hover{
-                        z-index: 1;
+                        z-index: 5;
                         transform: scale(1.2);
                     }
 
