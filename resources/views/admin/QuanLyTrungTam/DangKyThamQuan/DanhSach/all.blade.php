@@ -1,0 +1,181 @@
+@extends('admin.admin_layout')
+@section('admin_content')
+<!--Start Page Title-->
+<div class="page-title-box">
+    <h4 class="page-title">Danh sách đơn đăng ký tham quan được duyệt</h4>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{route('dashboard')}}">Dashboard</a>
+        </li>
+        <li>
+            <a>Quản lý đơn đăng ký tham quan trung tâm</a>
+        </li>
+        <li class="active">
+            <a href="{{route('registerToVisit.all')}}">{{$title}}</a>
+        </li>
+    </ol>
+    <div class="clearfix"></div>
+</div>
+<!--End Page Title-->          
+
+<!--Start row-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+
+            <div class="row justify-content-end" style="margin-bottom: 10px">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-2">
+                    <div class="log text-right">
+                        <a type="button" class="btn btn-primary" style="border-radius: 7px" href="{{route('registerToVisit.add')}}"><i class="fa fa-plus"></i> Thêm</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="table_data">
+                <div class="table-responsive">
+                    <table id="example4" class="display table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Mã đăng ký</th>
+                                <th>Người đại diện</th>
+                                <th>Số lượng người</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Ngày tham quan</th>
+                                <th>Thời gian tham quan</th>
+                                <th>Người duyệt</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (count($dangkythamquan) > 0)
+                                @foreach ($dangkythamquan as $key => $dky )
+                                    <tr>
+                                        <td>{{$dky->id_dangky}}</td>
+                                        <td>{{$dky->nguoiDaiDienDK}}</td>
+                                        <td>{{$dky->soLuongDK}}</td>
+                                        <td>{{$dky->emailDK}}</td>
+                                        <td>{{$dky->soDienThoaiDK}}</td>
+                                        <td>{{date('d-m-Y', strtotime($dky->ngayThamQuanDK))}}</td>
+                                        <td>{{date('H:i A', strtotime($dky->thoigianTQ))}}</td>
+                                        <td>{{$dky->hoTen}}</td>
+                                        <td class="text-center">
+                                            <a href="{{route('registerToVisit.detail',$dky->id_dangky)}}" type="button" class="btn btn-info edit-tb" style="border-radius: 7px">
+                                                <i class="fa fa fa-pen-square"></i>
+                                            </a>
+                                            <button value="{{$dky->id_dangky}}"  class="btn btn-info" id="btn-detail-visit" style="border-radius: 7px">
+                                                <i class="fa fa fa-info-circle"></i>
+                                            </button>
+                                            <a href=""  type="button" data-id="{{$dky->id_dangky}}" class="btn btn-danger delete-dktq" style="border-radius: 7px"><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <td colspan="9" style="text-align: center">Không có đơn đăng ký nào được duyệt</td>
+                            @endif
+                        </tbody>
+                    </table>
+                    
+                </div>
+                @include('admin.QuanLyTrungTam.DangKyThamQuan.DanhSach.Modal.detail')
+            </div>
+        </div>
+    </div>
+</div>
+<!--End row-->
+@endsection
+
+@section('ajax_js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $(document).on('click', '.delete-dktq', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                var token = $("meta[name='csrf-token']").attr("content");
+                swal({
+                    title: "Bạn có chắc muốn xoá đăng ký này?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Có",
+                    cancelButtonText: "Không"
+                    },
+                    function() {
+                        $.ajax({
+                            type: "DELETE",
+                            url: 'delete-registerToVisit/'+id,
+                            data: {id:id, _token:token},
+                            success: function (data) {
+                                swal("Xoá thành công!", "Không thể khôi phục dữ liệu đã xoá", "success");
+                                window.setTimeout(function(){
+                                    location.reload();
+                                }, 2000);
+                            }         
+                        });
+                });
+            });
+
+            var table = $('#example4').DataTable({
+                "columnDefs": [
+                    { "visible": false, "targets": 2 }
+                ],
+                "order": [[ 2, 'asc' ]],
+                "displayLength": 10,
+                "drawCallback": function ( settings ) {
+                    var api = this.api();
+                    var rows = api.rows( {page:'current'} ).nodes();
+                    var last=null;
+        
+                    api.column(2, {page:'current'} ).data().each( function ( group, i ) {
+                        if ( last !== group ) {
+                            $(rows).eq( i ).before(
+                                // '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+                            );
+        
+                            last = group;
+                        }
+                    } );
+                }
+            } );
+        
+            // Order by the grouping
+            $('#example4 tbody').on( 'click', 'tr.group', function () {
+                var currentOrder = table.order()[0];
+                if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+                    table.order( [ 2, 'desc' ] ).draw();
+                }
+                else {
+                    table.order( [ 2, 'asc' ] ).draw();
+                }
+            } );
+            
+            jQuery('body').on('click', '#btn-detail-visit', function () {
+                var id_dangky = $(this).val();
+                $.get('detail-registerToVisit-ajax/'+id_dangky, function (data) {
+
+                    var format_one = moment(data.ngayThamQuanDK).format('DD-MM-YYYY');
+                    $("#dktq-ngayThamQuanDK").text(format_one); 
+
+                    var format_two = moment(data.ngayDangKyDK).format('DD-MM-YYYY');
+                    $("#dktq-ngayDangKyDK").text(format_two); 
+
+                    var time = data.thoigianTQ;
+                    var formatted = moment(time, "HH:mm:ss").format("hh:mm A");
+                    $('#dktq-thoigianTQ').text(formatted);
+
+                    $('#dktq-id_dangky').text(data.id_dangky);
+                    $('#dktq-nguoiDaiDienDK').text(data.nguoiDaiDienDK);
+                    $('#dktq-soLuongDK').text(data.soLuongDK);
+                    $('#dktq-emailDK').text(data.emailDK);
+                    $('#dktq-soDienThoaiDK').text(data.soDienThoaiDK);
+                    $('#dktq-ghiChuDK').text(data.ghiChuDK);
+                    $('#RegisterToVisitModal').modal('show');
+                })
+            });
+            
+
+        });
+    </script>
+@endsection

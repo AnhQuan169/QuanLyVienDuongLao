@@ -2,36 +2,27 @@
 @section('admin_content')
 <!--Start Page Title-->
 <div class="page-title-box">
-    <h4 class="page-title">Thêm thông báo mới</h4>
+    <h4 class="page-title">{{$title}}</h4>
     <ol class="breadcrumb">
         <li>
             <a href="{{route('dashboard')}}">Dashboard</a>
         </li>
         <li>
-            <a href="{{route('all_notification')}}">Quản lý thông báo</a>
+            <a>Quản lý thông báo</a>
         </li>
         <li class="active">
-            <a href="{{route('all_notification')}}">Thêm thông báo mới</a>
+            <a href="{{$url}}">{{$title}}</a>
         </li>
     </ol>
     <div class="clearfix"></div>
 </div>
-<!--End Page Title-->       
+<!--End Page Title-->      
 
 
 <!--Start row-->
 <div class="row">
     <div class="col-md-12">
         <div class="white-box">
-            <h2 class="header-title">Thêm thông báo mới</h2>
-                <?php 
-                    $message = Session::get('message');
-                    if($message){
-                        echo '<span class="text-alert">',$message,'</span>';
-                        Session::put('message', null);
-                    }
-                ?>
-                
                 <form class="js-validation-bootstrap form-horizontal" action="{{route('save_notification')}}" method="POST">
                     @csrf
                     <div class="form-group">
@@ -69,9 +60,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                      <div class="col-md-8 col-md-offset-3">
-                        <button class="btn  btn-primary save_notification" type="submit">Thêm mới</button>
-                      </div>
+                        <div class="col-md-8 col-md-offset-3">
+                            <a href="{{route('notification.all')}}" class="btn btn-instagram" type="button">Quay lại</a>
+                            <button class="btn  btn-success save_notification" type="submit">Thêm</button>
+                        </div>
                     </div>
                 </form>
         </div>  
@@ -79,29 +71,3 @@
 </div>
 <!--End row-->
 @endsection
-
-{{-- @section('ajax_js')
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.save_notification').click(function(){
-                var maintb = $('.maintb').val();
-                var contenttb = $('.contenttb').val();
-                var datetb = $('.datetb').val();
-                var _token = $('input[name="_token"]').val();
-                
-                $.ajax({
-                    url: '{{url('/admin/thongbao/save-notification')}}',
-                    method: "POST",
-                    data:{maintb:maintb,contenttb:contenttb,datetb:datetb,_token: _token},
-                    success: function(data){
-                        swal("Thêm thành công", "Tiếp tục thêm mới thông báo", "success"),
-                        window.setTimeout(function(){
-                            location.reload();
-                        }, 2000);
-                    }
-                });
-            });
-            
-        });
-    </script>
-@endsection --}}

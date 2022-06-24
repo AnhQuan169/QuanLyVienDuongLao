@@ -30,6 +30,8 @@ class User extends Authenticatable
         'loaiTaiKhoan',
         'diaChi',
         'tinhTrang',
+        'ngayDangKy',
+        'ngayDuyet',
         'nguoiDuyet',
         'id_lichtruc'
     ];
@@ -59,5 +61,9 @@ class User extends Authenticatable
 
     // public function hasRole($role){
     //     return null !== $this->where('loaiTaiKhoan',$role)->first();
+    // }
+
+    // public function xaphuong(){
+    //     return $this->belongsTo('App\Models\Xaphuong','xa_id');
     // }
 }

@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tinh extends Model
+class Slider extends Model
 {
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        'city_name','city_type'
+        'ten_slide',
+        'hinhAnh_slide'
     ];
-    protected $primaryKey = 'city_id';
-    protected $table = 'tbl_tinhthanhpho';
+    protected $primaryKey = 'id_slide';
+    protected $table = 'tbl_slider';
 }

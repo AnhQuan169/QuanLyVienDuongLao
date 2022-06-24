@@ -9,6 +9,7 @@
     <meta name="author" content="">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- <meta name="_token" content="{{ csrf_token() }}"> --}}
 
     <link rel="icon" href="{{asset('public/admin/images/favicon.png')}}" type="image/png">
     <title>{{$title}}</title>
@@ -21,6 +22,7 @@
     <link href="{{asset('public/admin/css/css/bootstrap.min.css')}}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> --}}
     <link href="{{asset('public/admin/css/css/style.css')}}" rel="stylesheet">
+    {{-- SCSS --}}
     <link rel="stylesheet" href="{{asset('public/admin/css/style.css')}}">
     <link href="{{asset('public/admin/css/css/responsive.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.css">
@@ -30,12 +32,21 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css" />
     <link rel="stylesheet" href="{{asset('public/admin/css/css/fontawesome/all.min.css')}}">
+
+    <link href="{{asset('public/admin/plugins/summernote-master/summernote.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('public/admin/plugins/summernote-master/summernote-bs2.css')}}" rel="stylesheet" type="text/css" />
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
           <script src="js/html5shiv.min.js"></script>
           <script src="js/respond.min.js"></script>
     <![endif]-->
+
+    {{-- Data table --}}
+    {{-- Editor --}}
+    <link href="{{asset('public/admin/plugins/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('public/admin/plugins/datatables/css/jquery.dataTables-custom.css')}}" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -47,7 +58,16 @@
 
         <!--logo-->
         <div class="logo">
-            <a href="index.html"><img src="{{asset('public/admin/images/logo.png')}}" alt=""></a>
+            {{-- <a href="index.html"><img src="{{asset('public/admin/images/logo.png')}}" alt=""></a> --}}
+            <p style="font-size: 20px;padding: 20px 0;color: #fff;">
+                @if(Auth::user()->loaiTaiKhoan==0)
+                    Quản lý trung tâm
+                @elseif (Auth::user()->loaiTaiKhoan==1)
+                    Nhân viên kho
+                @else
+                    Nhân viên y tế
+                @endif
+            </p>
         </div>
 
         <div class="logo-icon text-center">
@@ -63,74 +83,92 @@
                 </li>
 
                 @hasrole('0')
-                <li>
-                    <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký tham quan trung tâm</span></a>
+                <li class="menu-list">
+                    <a href=""><i class="icon-layers"></i><span>Quản lý đơn đăng ký tham quan trung tâm</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{route('browseapplication.all')}}">Duyệt đơn đăng ký</a></li>
+                        <li><a href="{{route('registerToVisit.all')}}">Danh sách đơn đăng ký đã duyệt</a></li>
+                        <li><a href="{{route('allapplicationtoday.all')}}">Khách tham quan hôm nay</a></li>
+                        <li><a href="{{route('garbagecanapplication.all')}}">Thùng rác</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list">
+                    <a href=""><i class="icon-layers"></i><span>Quản lý người dùng</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{route('browseuser.all')}}">Duyệt đăng ký người dùng</a></li>
+                        <li><a href="{{route('user.all')}}">Danh sách người dùng</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list">
+                    <a href=""><i class="icon-layers"></i><span>Quản lý hồ sơ người cao tuổi</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{route('browseelderly.all')}}">Duyệt đăng ký hồ sơ</a></li>
+                        <li><a href="{{route('elderly.all')}}">Danh sách hồ sơ</a></li>
+                        <li><a href="{{route('elderly.warehouse')}}">Kho hồ sơ</a></li>
+                    </ul>
                 </li>
                 <li>
-                    <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký dịch vụ cho người cao tuổi</span></a>
+                    <a href="{{route('employee.all')}}"><i class="icon-layers"></i><span>Quản lý nhân viên</span></a>
                 </li>
                 <li>
-                    <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký hồ sơ cho người cao tuổi</span></a>
+                    <a href="{{route('notification.all')}}"><i class="icon-layers"></i><span>Quản lý thông báo</span></a>
                 </li>
                 <li>
-                    <a href=""><i class="icon-layers"></i><span>Duyệt đăng ký người dùng</span></a>
+                    <a href="{{route('supplier.all')}}"><i class="icon-layers"></i><span>Quản lý nhà cung cấp</span></a>
                 </li>
                 <li>
+                    <a href="{{route('posts.all')}}"><i class="icon-layers"></i><span>Quản lý bài viết</span></a>
+                </li>
+                <li>
+                    <a href="{{route('slides.all')}}"><i class="icon-layers"></i><span>Quản lý slide</span></a>
+                </li>
+                <li>
+                    <a href="{{route('links.all')}}"><i class="icon-layers"></i><span>Quản lý liên kết</span></a>
+                </li>
+                {{-- <li>
                     <a href=""><i class="icon-layers"></i><span>Duyệt đề xuất báo cáo kho</span></a>
                 </li>
                 <li>
-                    <a href=""><i class="icon-layers"></i><span>Quản lý người dùng</span></a>
-                </li>
-                <li>
-                    <a href=""><i class="icon-layers"></i><span>Quản lý hồ sơ người cao tuổi</span></a>
-                </li>
-                <li>
-                    <a href=""><i class="icon-layers"></i><span>Quản lý dịch vụ trung tâm</span></a>
-                </li>
-                <li>
-                    <a href=""><i class="icon-layers"></i><span>Quản lý nhà cung cấp</span></a>
-                </li>
-                <li>
-                    <a href=""><i class="icon-layers"></i><span>Quản lý nhân viên</span></a>
-                </li>
-                <li>
-                    <a href="{{route('all_notification')}}"><i class="icon-layers"></i><span>Quản lý thông báo</span></a>
-                </li>
-                <li>
                     <a href=""><i class="icon-layers"></i><span>Cập nhật lịch trực của nhân viên</span></a>
-                </li>
-                <li>
+                </li> --}}
+                <li class="menu-list">
                     <a href=""><i class="icon-layers"></i><span>Thống kê</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{route('number.categories')}}">Số lượng các danh mục</a></li>
+                        <li><a href="{{route('statistical.registerToVisit')}}">Số lượng đăng ký tham quan theo tháng</a></li>
+                    </ul>
                 </li>
                 @endhasrole
                 {{-- Nhân viên kho --}}
                 @hasrole('1')
                 <li>
-                    <a href=""><i class="icon-layers"></i><span>Quản lý xuất - nhập thuốc</span></a>
+                    <a href="{{route('medicine.all')}}"><i class="icon-layers"></i><span>Quản lý thuốc</span></a>
                 </li>
                 <li>
                     <a href=""><i class="icon-layers"></i><span>Xuất báo cáo nhập - xuất thuốc</span></a>
                 </li>
-                <li>
+                <li class="menu-list">
                     <a href=""><i class="icon-layers"></i><span>Quản lý cơ sở vật chất</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="{{route('infrastructure.all')}}">Danh sách cơ sở vật chất</a></li>
+                        <li><a href="{{route('warehouse.infrastructure.all')}}">Kho lưu trữ</a></li>
+                    </ul>
                 </li>
-                <li>
+                {{-- <li>
                     <a href=""><i class="icon-layers"></i><span>Đề xuất báo cáo kho</span></a>
-                </li>
+                </li> --}}
                 @endhasrole
                 @hasrole('2')
                 <li>
-                    <a href=""><i class="icon-layers"></i><span>Cập nhật thuốc điều trị</span></a>
+                    <a href="{{route('health.elderly.all')}}"><i class="icon-layers"></i><span>Cập nhật tình hình sức khoẻ người cao tuổi</span></a>
                 </li>
                 <li>
-                    <a href=""><i class="icon-layers"></i><span>Cập nhật bệnh án người cao tuổi</span></a>
+                    <a href="{{route('medical.records.all')}}"><i class="icon-layers"></i><span>Cập nhật bệnh án người cao tuổi</span></a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href=""><i class="icon-layers"></i><span>Cập nhật tình trạng vật tư y tế đang dùng</span></a>
-                </li>
-                <li>
-                    <a href=""><i class="icon-layers"></i><span>Cập nhật tình hình sức khoẻ người cao tuổi</span></a>
-                </li>
+                </li> --}}
+                
                 @endhasrole
                 
 
@@ -161,12 +199,12 @@
                     @if(Auth::check())
                         <li>
                             <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <img src="{{asset('public/admin/images/users/avatar-6.jpg')}}" alt="" />
+                                <img src="{{asset('public/storage/'.Auth::user()->anhDaiDien)}}" alt="" />
                                 {{Auth::user()->hoTen}}
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                            <li> <a href="#"> <i class="fa fa-user"></i> Thông tin cá nhân </a> </li>
+                            <li> <a href="{{route('admin.profile',Auth::user()->id)}}"> <i class="fa fa-user"></i> Thông tin cá nhân </a> </li>
                             <li> <a href="#"> <i class="fa fa-info"></i> Thay đổi mật khẩu </a> </li>
                             <li> <a href="{{route('logout_admin')}}"> <i class="fa fa-lock"></i> Đăng xuất </a> </li>
                             </ul>
@@ -208,6 +246,9 @@
     <script src="{{asset('public/admin/js/functions.js')}}"></script>
     <!-- End core plugin -->
     
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
+    
     <!--Begin Page Level Plugin-->
 	{{-- <script src="{{asset('public/admin/plugins/morris-chart/morris.js')}}"></script>
     <script src="{{asset('public/admin/plugins/morris-chart/raphael-min.js')}}"></script> --}}
@@ -216,8 +257,13 @@
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="{{asset('public/admin/js/sweetalert.js')}}"></script>
 
+    {{-- Data table --}}
+    <script src="{{asset('public/admin/plugins/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('public/admin/pages/table-data.js')}}"></script>
 
-    <script src="{{asset('public/admin/js/notification.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/admin/plugins/summernote-master/summernote.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/admin/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/admin/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js')}}"></script>
     
     {{-- Hiển thị thông báo --}}
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
@@ -246,10 +292,7 @@
     <script src="{{asset('public/admin/ckeditor/ckeditor.js')}}"></script>
     
     @include('More.ckeditor')
-    @yield('ajax_js')
-
-
-    
+    @yield('ajax_js')    
 
 </body>
 

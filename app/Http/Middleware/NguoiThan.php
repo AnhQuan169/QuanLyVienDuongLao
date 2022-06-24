@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NguoiThan
 {
@@ -20,8 +21,8 @@ class NguoiThan
             if(Auth::user()->loaiTaiKhoan==3){
                 return $next($request);
             }
-            return redirect()->route('login_admin')->with('message','Bạn không có quyền thực hiện chức năng này');
+            return redirect()->back()->with('message','Bạn không có quyền thực hiện chức năng này');
         }
-        return redirect()->route('login_admin');
+        return redirect()->back();
     }
 }

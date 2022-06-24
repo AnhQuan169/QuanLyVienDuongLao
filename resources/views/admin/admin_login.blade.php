@@ -38,7 +38,7 @@
                             <?php 
                                 $message = Session::get('message');
                                 if($message){
-                                    echo '<span class="text-alert ">',$message,'</span>';
+                                    echo '<div class=" alert alert-danger ">',$message,'</div>';
                                     Session::put('message', null);
                                 }
                 
@@ -46,15 +46,21 @@
                         </p>
                         <form action="{{URL::to('/login-admin')}}" method="POST">
                             {{ csrf_field() }}
-                            @foreach ($errors->all() as $val)
+                            {{-- @foreach ($errors->all() as $val)
                                 <p class="text-center">{{$val}}</p>
-                            @endforeach
+                            @endforeach --}}
                             <div class="form-group">
                                 <input type="text" class="form-control" name="name" value="{{old('name')}}"  placeholder="Tên tài khoản" >
+                                @if($errors->any('name'))
+                                    <span class="text-danger">{{$errors->first('name')}}</span>
+                                @endif
                             </div>
                             
                             <div class="form-group">
                                 <input type="password" class="form-control" name="password"  placeholder="Mật khẩu" >
+                                @if($errors->any('password'))
+                                    <span class="text-danger">{{$errors->first('password')}}</span>
+                                @endif
                             </div>
 
                             <div class="form-group">

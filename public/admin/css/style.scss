@@ -1,6 +1,6 @@
 
 .text-line-long{
-    width: 200px;
+    width: 300px;
     p{
         overflow: hidden;
         display: -webkit-box;
@@ -10,3 +10,57 @@
         
     }
 }
+
+.cover-image-ncc{
+    width: 100%;
+    height: auto;
+    z-index: 4;
+    display: none;
+    animation: zoom 0.6s;
+
+    img{
+        width: 50%;
+        height: auto;
+        object-fit: cover;
+    }
+}
+
+.close-ncc{
+    cursor: pointer;
+    font-size: 34px;
+    float: right;
+
+    &:hover{
+        color: red;
+    }
+}
+
+
+.small-nd{
+    width: 200px;
+    position: relative;
+}
+
+@keyframes zoom {
+    
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+// ===== Admin: Đăng ký tham quan trung tâm =====
+// .register-to-visit-detail{
+//     .modal-content{
+
+//         .modal-body{
+//             .row{
+//             }
+//         }
+//     }
+// }
+
+
+

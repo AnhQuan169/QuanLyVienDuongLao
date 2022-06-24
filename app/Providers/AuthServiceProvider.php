@@ -26,20 +26,20 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
-        Gate::define('quanlytt', function ($user) {
-            return $user->quyen == 0;
+        Gate::define('quanly', function ($user) {
+            return $user->loaiTaiKhoan == 0;
         });
 
         Gate::define('nhanvienkho', function ($user) {
-            return $user->quyen == 1;
+            return $user->loaiTaiKhoan == 1;
         });
 
         Gate::define('nhanvienyte', function ($user) {
-            return $user->quyen == 2;
+            return $user->loaiTaiKhoan == 2;
         });
 
         Gate::define('nguoithan', function ($user) {
-            return $user->quyen == 3;
+            return $user->loaiTaiKhoan == 3;
         });
     }
 }

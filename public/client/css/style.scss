@@ -27,8 +27,34 @@ li {
     padding: 0;
     list-style: none;
 }
+.menu-header-scroll{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
 
 header {
+    .logo-header{
+        
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        border-bottom: 0.5px solid rgb(210, 201, 201);
+
+        img{
+            width: 70px;
+            height: 70px;
+        }
+
+        h3{
+            padding: 10px;
+            // background-color: #DEEDF5;
+            line-height: 50px;
+        }
+    }
+    
+
     .top-header {
         background-color: #fff;
         font-size: 14px;
@@ -44,6 +70,7 @@ header {
     }
     .menu-header {
         background-color: $color_b;
+
         .main-menu {
             ul {
                 li {
@@ -103,23 +130,344 @@ header {
                 }
             }
         }
+
+        
     }
+
+    
+}
+
+.slide-show {
+
+    .carousel-item{
+        img{
+            height: 600px;
+            size: 100%;
+        }
+    }
+    
 }
 
 #content {
-    .slide-show {}
+    
     .main-content {
         margin: 30px 0;
-        .main-right {}
-        .main-center {
-            .card {
-                border: 3px solid rgba(0, 0, 0, .125);
-                margin: 20px 0;
-                .form-group {
-                    padding: 10px 20px 0;
+        
+        // Danh sách người cao tuổi
+        .list-elderly{
+            margin: 10px 200px 10px;
+
+            .list-elderly-header{
+                p{
+                    font-size: 20px;
+                    font-weight: 600;
+                    text-align: center;
+                }
+
+                a{
+                    justify-content: end;
+                }
+            }
+
+            .list-elderly-filter{
+                font-size: 18px;
+                padding: 10px;
+
+                .list-elderly-filter-header{
+                    height: 40px;
+                    line-height: 40px;
+                    padding: 0 10px;
+
+                }
+                .list-elderly-filter-choose{
+                    width: 300px;
+                }
+                .list-elderly-filter-submit{
+                    margin-left: 20px;
+                }
+            }
+
+            .list-elderly-approved{
+                margin-top: 20px;
+                .row{
+                    .card{
+                        // height: 315px;
+
+                        .card-a{
+                            color: #000;
+                            font-size: 16px;
+                            text-align: center;
+
+                            p{
+                                text-transform: uppercase;
+                                height: 50px;
+                            }
+
+                            span{
+                                font-size: 13px;
+                            }
+                        }
+
+                        .card-info{
+                            position: absolute;
+                            line-height: 30px;
+                            height: 100%;
+                            width: 100%;
+                            top: 0;
+                            left: 0;
+                            opacity: 0;
+                            transition: transform ease-in 0.5s;
+                            z-index: 2;
+    
+                            &:hover{
+                                opacity: 5;
+                                width: calc(100% + 40px);
+                                height: calc(100% + 80px);
+                                left: -20px;
+                                top: -20px;
+                                transform: scale(1.2);
+                            }
+
+                            a{
+                                text-decoration: none;
+                                color: #000;
+
+                                p{
+                                    text-transform: uppercase;
+                                    text-align: center;
+                                    font-weight: 600;
+                                    margin-top: 20px;
+                                }
+                            }
+    
+                            .card-body{
+
+                                .card-information{
+                                    
+                                }
+                            }
+                        }
+                    }
+
+                    
+
+                    .elderly-none{
+                        height: 202px;
+                        text-align: center;
+
+                        i{
+                            font-size: 30px;
+                            margin-top: 45px;
+                        }
+                        span{
+                            padding: 5px 0;
+                        }
+                    }
+                }
+
+                
+            }
+
+            .card{
+                .row{
+                    img{
+                        width: 200px;
+                        height: 200px;
+                    }
+
+                    .card-body{
+                        .status-text-a{
+                            background-color: #157347;
+                            color: #fff;
+                            padding: 10px;
+                            width: 120px;
+                        }
+
+                        .status-text-b{
+                            background-color: #F17171;
+                            color: #fff;
+                            padding: 10px;
+                            width: 102px;
+                        }
+                    }
                 }
             }
         }
+
+        // Chi tiết người cao tuổi
+        .detail-elderly{
+            margin: 10px 200px 10px;
+
+            .detail-elderly-header{
+                p{
+                    font-size: 20px;
+                    font-weight: 600;
+                    text-align: center;
+                }
+            }
+
+            .detail-elderly-category{
+                margin-top: 20px;
+                ul{
+                    li{
+                        a{
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+
+            // Xem tình hình sức khoẻ
+            #health-situation-content{
+                .search{
+                    .search-group{
+                        font-size: 16px;
+                        padding: 10px;
+                        
+                        .search-name{
+                            height: 40px;
+                            line-height: 40px;
+                            padding: 0 10px;
+                        }
+
+                        .search-date-choose{
+                            input{
+                                width: 300px;
+                                height: 40px;
+                            }
+                        }
+
+                        .search-submit{
+                            margin-left: 20px;
+                        }
+                    }
+                }
+
+                .search-result{
+                    .card{
+                        margin: 10px 20px;
+
+                        // .card-body{
+
+                            .search-time{
+                                font-size: 17px;
+                                text-align: center;
+                                padding: 20px 20px;
+                                border-right: 1px dashed #000;
+
+                                p{
+                                    line-height: 80px;
+                                }
+                            }
+
+                            .search-main{
+                                padding: 20px;
+                            }
+                        // }
+                    }
+                }
+            }
+
+            #info-elderly-content{
+                .info-header{
+                    text-align: center;
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+
+                .info-content{
+                    font-size: 16px;
+                    padding: 20px 10px;
+
+                    .info-content-img{
+                        text-align: center;
+                        background-color: #daf0e3;
+                        // filter: brightness(60%);
+                        img{
+                            border-radius: 30px;
+                            margin: 20px 0;
+                        }
+                    }
+
+                    .info-content-main{
+                        margin: 40px 70px 0 70px;
+
+                        .info-content-detail{
+                            margin-bottom: 5px;
+
+                            .info-content-title{
+                                width: 300px;
+                                color: #153360;
+                            }
+
+                            .info-content-title-img{
+                                width: 1005;
+                            }
+                            .info-content-anhDon{
+                                z-index: 0;
+                                transition: transform 0.5s;
+                            }
+
+                            .info-content-name{
+                                text-transform: uppercase;
+                                font-style: bold;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #medicine-records-content{
+                .medicine-header{
+                    text-align: center;
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+
+                .medicine-content{
+                    .modal{
+                        .modal-dialog{
+                            .modal-content{
+                                .modal-body{
+                                    font-size: 15px;
+                                    .medicine-hospital{
+                                        p{
+                                            font-size: 18px;
+                                            text-align: center;
+                                            font-weight: 600;
+                                            padding: 10px 0;
+                                            border-bottom: 1px solid rgb(214, 208, 208);
+                                        }
+
+                                        .medicine-hospital-content{
+                                            margin-bottom: 5px;
+
+                                            .content-border{
+                                                border-bottom: 1px dashed #000;
+                                                padding: 10px;
+                                                margin: 5px 20px;
+
+                                                .medicine-hospital-title{
+                                                    width: 300px;
+                                                    color: #153360;
+                                                    padding-left: 30px;
+                                                }
+                                                .medicine-hospital-name{
+                                                    text-transform: uppercase;
+                                                }
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Đăng ký tài khoản người dùng
         .form-register {
             border: 2px solid rgb(141, 138, 138);
             border-radius: 20px;
@@ -128,7 +476,189 @@ header {
                 width: 100%;
             }
         }
-        .main-left {}
+
+        .main-center {
+            .card-header{
+                background-color: #21b321;
+                color: #fff;
+                font-weight: 500;
+                text-transform: uppercase;
+            }
+
+            .row{
+                .card{
+                    margin: 5px 0;
+                    z-index: 0;
+                    transition: transform ease-in 0.5s;
+
+                    &:hover{
+                        z-index: 5;
+                        transform: scale(1.2);
+                    }
+
+                    @keyframes zoom_post {
+    
+                        0%{
+                            transform: scale(1);
+                        }
+                        30%{
+                            transform: scale(1.5);
+                            z-index: 1;
+                        }
+                    }
+
+                    a{
+                        color: #000;
+                    }
+
+                    img{
+                        height: 184px;
+                    }
+
+                    .card-body{
+                        .card-text{
+                            height: 42px;
+                            overflow: hidden;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                            text-overflow: ellipsis;
+                        }
+                        .card-date{
+                            p{
+                                margin-top: -10px;
+                                float: right;
+                                color: #406fd5;
+                                font-style: italic;
+                                margin-bottom: 0px;
+                            }
+                        }
+                    }
+
+                    .new-post{
+                        background-color: rgb(198, 198, 82);
+                        width: 100px;
+                        position: absolute;
+                        text-align: center;
+                        top: 10px;
+                        right: -8px;
+                        color: #fff;
+                        font-size: 17px;
+                        font-weight: 500;
+                        line-height: 16px;
+                        // border-top-left-radius: 10px;
+                        // border-bottom-left-radius: 10px;
+                        padding: 10px 0;
+
+                        &::after{
+                            content: '';
+                            position: absolute;
+                            right: 0;
+                            bottom: -10px;
+                            border-top: 10px solid currentColor;
+                            border-right: 8px solid transparent;
+                            filter: brightness(60%);
+                        }
+                    }
+
+                    
+                }
+            }
+
+            // Chi tiết bài viết
+            .detail-post-list-choose{
+                .detail-post-wrap{
+                    border: 1px solid rgb(230, 226, 226);
+    
+                    .detail-post{
+                        padding: 10px;
+                        h2{
+                            text-align: center;
+                            color: #157347;
+                        }
+                        img{
+                            margin: 20px 0;
+                        }
+    
+                        .other-post{
+                            display: flex;
+    
+                            .post-actor{
+                                font-weight: 600;
+                                right: 0;
+                                font-style: italic;
+                            }
+    
+                            .post-date{
+                                color: #0B5ED7;
+                            }
+                        }
+
+                        
+                    }
+                    
+                }
+    
+                .list-post-related{
+                    border: 1px solid rgb(230, 226, 226);
+                    margin: 10px 0;
+                    padding: 10px;
+                    p{
+                        margin: 10px;
+                        font-size: 20px;
+                        font-weight: 600;
+                    }
+
+                    a{
+                        text-decoration: none;
+                        color: #000;
+
+                        &:hover{
+                            color: #1e8f4b;
+                        }
+
+                        .list-posts {
+                            display: flex;
+                            margin: 5px 20px 5px;
+                        }
+                    }
+                }
+    
+            }
+            
+        }
+        
+        .main-left {
+            margin: 10px 0;
+            .card-header{
+                background-color: #21b321;
+                color: #fff;
+                font-weight: 500;
+                text-transform: uppercase;
+            }
+
+            ul{
+                li{
+                    a{
+                        color: #000;
+                    }
+                    &:last-child{
+                        margin-bottom: -8px;
+                    }
+                }
+            }
+        }
+
+        .main-right {
+            margin: 10px 0;
+            .card-header{
+                background-color: #21b321;
+                color: #fff;
+                font-weight: 500;
+                text-transform: uppercase;
+            }
+        }
+
         // Xem thông tin trung tâm
         h2 {
             font-weight: 600;
@@ -145,26 +675,45 @@ header {
                 padding-left: 30px;
                 padding-bottom: 5px;
             }
-            p {}
+        }
+
+        // Dăng ký tham quan trung tâm
+        .register-visit-client{
+
+            .registerToVisit{
+                margin: 10px 200px 10px;
+            }
+
+            .form-group{
+                margin: 0 200px;
+                input{
+                    margin: 5px 0;
+                }
+                
+                textarea{
+                    margin: 5px 0;
+                }
+            }
+
         }
     }
 }
 
 footer {
-    background-color: $color;
-    color: #fff;
+    background-color: #F7F7F7;
+    color: #000;
     .footer-top {
         .box-footer {
             margin: 20px 0;
             h3 {
-                color: #fff;
+                color: #000;
                 padding-bottom: 10px;
                 padding-top: 10px;
             }
             ul {
                 li {
                     a {
-                        color: #fff;
+                        color: #000;
                         i {
                             font-size: 10px;
                             margin-right: 10px;
@@ -176,6 +725,7 @@ footer {
     }
     .footer-bottom {
         border-top: 1px solid #d4d3d3a9;
+        // border-top: 1px solid #000;
         .pull-left {
             margin-top: 16px;
         }
